@@ -1,0 +1,301 @@
+﻿<Window x:Class="EloksalPro.View.TapeProtectiveProcessProfileView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EloksalPro.View"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/charts/rangecontrolclient"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="Наклейка защитной пленки"  Width="1100" >
+    <Window.DataContext>
+        <viewModel:TapeProtectiveProcessViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"    
+			BorderThickness="5"
+			Opacity="0.94">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="-0.7"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+					Grid.Row="0"
+					Orientation="Horizontal"
+					FlowDirection="RightToLeft"
+					Background="Transparent"
+					MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+					MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+						Style="{StaticResource controlButton}"
+						Tag="{StaticResource color4}" 
+						Click="btnClose_Click" HorizontalAlignment="Right" Width="25" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMaximize" Width="25"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="btnMaximize_Click">
+                        <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="25"
+						Style="{StaticResource controlButton}" 
+						Tag="{StaticResource color8}"
+						Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="270"/>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="310"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="Номер:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"  />
+                    <TextBlock Grid.Column="0" Grid.Row="1"  Text="Дата:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"  />
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="Смена:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3"  Text="Время начала работы:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4"  Text="Время окончания работы:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5"  Text="Номер заказа:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6"  Text="Номенклатура профиля:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7"  Text="Номенклатура заказчика:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8"  Text="Наименование заказчика:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9"  Text="Длина профиля:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="10"  Text="Вес погонного метра, кг/м:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11"  Text="Внешний периметр, мм:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0"  Text="Количество произведенного профиля, шт:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1"  Text="Количество бракованного профиля, шт:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <!--<TextBlock Grid.Column="2" Grid.Row="2"  Text="Номер корзины:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>-->
+                    <TextBlock Grid.Column="2" Grid.Row="2"  Text="Вес произведенного профиля, кг:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3"  Text="Площадь произведенного профиля, м2:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="4"  Text="Количество погонных метров, м:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="5"  Text="Вес бракованного профиля, кг:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                   
+                    <TextBlock Grid.Column="2" Grid.Row="6"  Text="Площадь бракованного профиля, м2:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="7"  Text="Ширина защитной пленки, мм:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/> 
+                    <TextBlock Grid.Column="2" Grid.Row="8"  Text="Расход пленка, м2:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="9"  Text="Сотрудник:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="10"  Text="Примечание:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>
+                    <!--<TextBlock Grid.Column="2" Grid.Row="9"  Text="Время простоя:" FontSize="12"
+						Style="{StaticResource controlTextBlock}"/>-->
+                    <TextBox Grid.Column="1" Grid.Row="0" IsEnabled="False" Name="txtNumber"
+						Text="{Binding NumberTapeProtective, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <DatePicker Grid.Column="1" Grid.Row="1" Name="txtDate" FontSize="12" SelectedDate="{Binding TapeProtective.DateTapeProtective}" DisplayDate="{Binding DateTime.Now}"  BorderBrush="#E0E1F1" Margin="1"/>
+                    <ComboBox Grid.Column="1" Grid.Row="2" Name="txtShift" IsEditable="True" StaysOpenOnEdit="True"  
+						ItemsSource="{Binding WorkingShiftList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding WorkingShiftSource, Mode=TwoWay}" Margin="1"/>
+                    <TextBox Grid.Column="0" Grid.Row="12"  x:Name="txtId" IsEnabled="False"
+						Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />
+                    <dxe:DateEdit Grid.Column="1" Grid.Row="3"  Mask="G" MaskUseAsDisplayFormat="True" EditValue="{Binding TapeProtective.StartTime}"   Margin="1" IsPopupOpen="True" >
+                        <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditNavigatorWithTimePickerStyleSettings/>
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                    <dxe:DateEdit Grid.Column="1" Grid.Row="4"  Mask="G" MaskUseAsDisplayFormat="True" EditValue="{Binding TapeProtective.EndTime}"  Margin="1" IsPopupOpen="True"  >
+                        <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditNavigatorWithTimePickerStyleSettings/>
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                    <ComboBox Grid.Column="1" Grid.Row="5" Margin="1" IsEditable="True" StaysOpenOnEdit="True"
+				    ItemsSource="{Binding NumderSpecification, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding NumberSpecificationSource, Mode=TwoWay}" />
+               
+                    <ComboBox Grid.Column="1" Grid.Row="6" Margin="1"
+						ItemsSource="{Binding NomenclatureProfileList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding NomenclatureSource, Mode=TwoWay}" />
+                    <TextBox Grid.Column="1" Grid.Row="7"  IsEnabled="False"
+						Text="{Binding EloksalNoCommercial, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="8" 
+						Text="{Binding ClientName, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                    <TextBox Grid.Column="1" Grid.Row="9"  x:Name="txtAmountFact" IsEnabled="False"
+						Text="{Binding LenghtProfile, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="10"  x:Name="txtLenghtFact" IsEnabled="False"
+						Text="{Binding WeightProfile, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="11"  x:Name="txtOuterPerimeter" IsEnabled="False"
+						Text="{Binding OuterPerimeter, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="3" Grid.Row="0" 
+						Text="{Binding QuantityProducedProfile, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="3" Grid.Row="1" 
+						Text="{Binding QuantityDefectedProfile, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <!--<TextBox Grid.Column="3" Grid.Row="2" 
+						Text="{Binding TapeProtective.BasketNumber, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>-->
+                    <TextBox Grid.Column="3" Grid.Row="2" 
+						Text="{Binding WeightProfileProduced, UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True }"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                    <TextBox Grid.Column="3" Grid.Row="3" 
+						Text="{Binding GeneralAreaProducedProfile, UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True }"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                    <TextBox Grid.Column="3" Grid.Row="4" 
+						Text="{Binding QuantityRunningMeter, UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True }"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                    <TextBox Grid.Column="3" Grid.Row="5" 
+						Text="{Binding WeightProfileDefected, UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True }"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                 
+                    <TextBox Grid.Column="3" Grid.Row="6" 
+						Text="{Binding GeneralAreaDefectiveProfile, UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True }"
+						Style="{StaticResource controlText}" IsEnabled="False"/>
+                    <TextBox Grid.Column="3" Grid.Row="7" 
+						Text="{Binding WidthTapeProtectiveProfile, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="12" Name="idText" Visibility="Hidden"
+						Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />
+                   
+                    <TextBox Grid.Column="3" Grid.Row="8" 
+						Text="{Binding ConsumptionProtectiveFilm,UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />
+                    <ComboBox Grid.Column="3" Grid.Row="9"  Margin="1"
+						ItemsSource="{Binding EmployeeList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding EmployeeSource, Mode=TwoWay}" />
+                    <TextBox Grid.Column="3" Grid.Row="10" 
+						Text="{Binding TapeProtective.Annotation, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />
+                    <!--<TextBox Grid.Column="3" Grid.Row="9" 
+						Text="{Binding Downtime, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}" />-->
+
+
+                    <Button Grid.Column="3" Grid.Row="12" Grid.RowSpan="2"  x:Name="btnSave" 
+						Command="{Binding SaveInsertCommand }"
+						Content="SAVE DATA" 
+						Style="{StaticResource controlButtonGray}" />
+
+                    <dxg:GridControl  Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="5" x:Name="gridControl" EnableSmartColumnsGeneration="True" ItemsSource="{Binding TapeProtectiveProcessProfile}" Margin="5"  >
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить строку" Command="{Binding ShowRemoveCommand}" />
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.TotalSummary>
+                            <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                            <dxg:GridSummaryItem FieldName="GeneralQuantityDefectedProfile" ShowInColumn="GeneralQuantityDefectedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#.00"/>
+                            <dxg:GridSummaryItem FieldName="ConsumptionProtectiveFilm" ShowInColumn="ConsumptionProtectiveFilm" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                            <dxg:GridSummaryItem FieldName="QuantityRunningMeter" ShowInColumn="QuantityRunningMeter" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                        </dxg:GridControl.TotalSummary>
+                        <dxg:GridColumn FieldName="Id" Header="Id" Visible="False" />
+                        <dxg:GridColumn FieldName="DateTapeProtective" Header="Дата" Width="100" AllowEditing="False" />
+                        <!--<dxg:GridColumn FieldName="BasketNumber" Header="Номер корзины" Width="80"  AllowEditing="False"/>-->
+                        <!--DisplayFormat="{}{HH:mm}" Mask="t"-->
+                        <dxg:GridColumn FieldName="StartTime" Header="Время начало" Width="120"  AllowEditing="False" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="EndTime" Header="Время окончания" Width="120" AllowEditing="False" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="HH:mm" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа" AllowEditing="False"  />
+                        <dxg:GridColumn FieldName="ClientName" Header="Наим-ние заказчика" Width="130" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Ном-ра заказчика" Width="130" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="NomenclatureProfile" Header="Ном-ра профиля" Width="150" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="LenghtProfileFact" Header="Длина хлыста, мм" Width="90" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="WeightMeter" Header="Вес п.м, кг/м" Width="110" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="QuantityProducedProfile" Header="Кол-во произв. профиля, шт"  Width="100"  AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произв. профиля, кг" Width="120" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь ,м2" />
+                        <dxg:GridColumn FieldName="QuantityRunningMeter" Header="Кол-во п.м, м" />
+                        <dxg:GridColumn FieldName="QuantityDefectedProfile" Header="Кол-во брак. профиля"  Width="100"  AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="GeneralQuantityDefectedProfile" Header="Вес брак. профиля" Width="100" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь брак. профиля,м2"  Width="100" />
+                        <dxg:GridColumn FieldName="WidthTapeProtectiveProfile" Header="Ширина з.п, мм" Width="100" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="ConsumptionProtectiveFilm" Header="Расход з.п, м2" Width="100" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="Annotation" Header="Примечание" Width="140"/>
+                        <dxg:GridColumn FieldName="NumberTapeProtective" Header="Номер" Visible="False"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableView" ShowTotalSummary="True" FontSize="12" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

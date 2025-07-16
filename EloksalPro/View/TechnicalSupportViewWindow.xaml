@@ -1,0 +1,95 @@
+﻿<Window x:Class="EloksalPro.View.TechnicalSupportViewWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:local="clr-namespace:EloksalPro.View"
+        mc:Ignorable="d"
+        Title="TechnicalSupportViewWindow" Height="500" Width="700"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:TechnicalSupportViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"                    
+            BorderThickness="3"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="-0.3"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0" Grid.Column="2"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}" 
+                                Click="btnClose_Click" HorizontalAlignment="Right" Width="20" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="20"
+                                Style="{StaticResource controlButton}" 
+                                Tag="{StaticResource color8}"
+                                Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel> 
+                <TextBlock Grid.Column="0" Grid.Row="1" Text="Номер заявки:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+                <TextBlock Grid.Column="0" Grid.Row="2" Text="Дата заявки:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+                <TextBlock Grid.Column="0" Grid.Row="3" Text="Заявка:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+                <TextBlock Grid.Column="0" Grid.Row="4" Text="Дата исполнения:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+                <TextBlock Grid.Column="0" Grid.Row="5" Text="Дата готовности:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+                <TextBlock Grid.Column="0" Grid.Row="6" Text="Заявку создал:" Foreground="{StaticResource plainTextColor3}" HorizontalAlignment="Left" VerticalAlignment="Center" FontFamily="Times New Roman" Margin="5" FontSize="16"/>
+
+                <TextBox  Grid.Column="1" Grid.Row="1" Name="txtNumber" Margin="5"   FontFamily="Times New Roman" FontSize="14"  Text="{Binding Support.Number}" Background="Transparent" Foreground="{StaticResource plainTextColor3}" IsEnabled="False"  />
+                <DatePicker Grid.Column="1" Grid.Row="2" Name="txtDateApp" Margin="3" FontFamily="Times New Roman"  FontSize="14" SelectedDate="{Binding Support.DateApp, UpdateSourceTrigger=PropertyChanged}" DisplayDate="{Binding DateTime.Now}" />
+
+                <TextBox  Grid.Column="1" Grid.Row="3" Name="txtApplicationText"  Margin="5"   FontFamily="Times New Roman" FontSize="14"  Text="{Binding Support.ApplicationText, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" Foreground="{StaticResource plainTextColor3}" TextWrapping="Wrap" AcceptsReturn="True"/>
+                <DatePicker Grid.Column="1" Grid.Row="4" Name="txtDatePreliminaryReadiness"  Margin="3" FontFamily="Times New Roman"  FontSize="14" SelectedDate="{Binding Support.DatePreliminaryReadiness, UpdateSourceTrigger=PropertyChanged }" DisplayDate="{Binding DateTime.Now}" />
+                <DatePicker Grid.Column="1" Grid.Row="5" Name="txtDateReadiness"   Margin="3" FontFamily="Times New Roman"  FontSize="14" SelectedDate="{Binding Support.DateReadiness, UpdateSourceTrigger=PropertyChanged }" DisplayDate="{Binding DateTime.Now}"  />
+                <TextBox  Grid.Column="1" Grid.Row="6" Name="txtCustomer"   Margin="5"   FontFamily="Times New Roman" FontSize="14"  Text="{Binding Support.Customer, UpdateSourceTrigger=PropertyChanged }" Background="Transparent" Foreground="{StaticResource plainTextColor3}"  />
+                <Button x:Name="buttonSave" Grid.Column="1" Grid.Row="7"   Style="{StaticResource controlButtonLightGray}"   Command="{Binding SaveDataCommand}"  Content="Сохранить заявку"  HorizontalAlignment="Right" VerticalAlignment="Stretch"  />
+                <TextBox  Grid.Column="0" Grid.Row="8" Name="txtId"   Margin="5"   FontFamily="Times New Roman" FontSize="14"  Text="{Binding IdSupport, UpdateSourceTrigger=PropertyChanged}" Background="Transparent" Foreground="{StaticResource plainTextColor3}" IsEnabled="False" />
+
+            </Grid>
+        </Border>
+    </Border>
+</Window>

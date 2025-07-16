@@ -1,0 +1,1351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{93391C46-8BC4-4F79-AB32-AB848D494F79}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EloksalPro</RootNamespace>
+    <AssemblyName>EloksalPro</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>B2930357FA85A072805FC31AB92BB85EE557819B</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Charts.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Diagram.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.PivotGrid.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.1.Export, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Charts.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.CodeView.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Controls.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Core.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.DataAccess.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Diagram.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Docking.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.DocumentViewer.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.ExpressionEditor.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Grid.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Layout.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.LayoutControl.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.PivotGrid.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Printing.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.PropertyGrid.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.ReportDesigner.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Ribbon.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.RichEdit.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Themes.Office2016Colorful.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Themes.Office2016WhiteSE.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Themes.Office2019Black.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Themes.Office2019Colorful.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpf.Themes.Office2019DarkGray.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.1.Core, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.1, Version=20.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=4.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.4.7.1\lib\net40\FontAwesome.Sharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.3.0\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.3.0\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reflection.Metadata, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.2.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=4.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.4.6.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CustomControls\BindablePasswordBox.xaml.cs">
+      <DependentUpon>BindablePasswordBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EfStructures\ApplicationDbContext.cs" />
+    <Compile Include="Migrations\202402161129033_InitialCreate.cs" />
+    <Compile Include="Migrations\202402161129033_InitialCreate.designer.cs">
+      <DependentUpon>202402161129033_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202402291344073_InitialCreate1.cs" />
+    <Compile Include="Migrations\202402291344073_InitialCreate1.designer.cs">
+      <DependentUpon>202402291344073_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403011113242_InitialCreate2.cs" />
+    <Compile Include="Migrations\202403011113242_InitialCreate2.designer.cs">
+      <DependentUpon>202403011113242_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403011137071_InitialCreate3.cs" />
+    <Compile Include="Migrations\202403011137071_InitialCreate3.designer.cs">
+      <DependentUpon>202403011137071_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403011318434_InitialCreate4.cs" />
+    <Compile Include="Migrations\202403011318434_InitialCreate4.designer.cs">
+      <DependentUpon>202403011318434_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403040754402_InitialCreate5.cs" />
+    <Compile Include="Migrations\202403040754402_InitialCreate5.designer.cs">
+      <DependentUpon>202403040754402_InitialCreate5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403040833554_InitialCreate6.cs" />
+    <Compile Include="Migrations\202403040833554_InitialCreate6.designer.cs">
+      <DependentUpon>202403040833554_InitialCreate6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403041049072_InitialCreate7.cs" />
+    <Compile Include="Migrations\202403041049072_InitialCreate7.designer.cs">
+      <DependentUpon>202403041049072_InitialCreate7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403041155417_InitialCreate8.cs" />
+    <Compile Include="Migrations\202403041155417_InitialCreate8.designer.cs">
+      <DependentUpon>202403041155417_InitialCreate8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403050842030_InitialCreate9.cs" />
+    <Compile Include="Migrations\202403050842030_InitialCreate9.designer.cs">
+      <DependentUpon>202403050842030_InitialCreate9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403051133286_InitialCreate10.cs" />
+    <Compile Include="Migrations\202403051133286_InitialCreate10.designer.cs">
+      <DependentUpon>202403051133286_InitialCreate10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403051148290_InitialCreate11.cs" />
+    <Compile Include="Migrations\202403051148290_InitialCreate11.designer.cs">
+      <DependentUpon>202403051148290_InitialCreate11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403051310370_InitialCreate12.cs" />
+    <Compile Include="Migrations\202403051310370_InitialCreate12.designer.cs">
+      <DependentUpon>202403051310370_InitialCreate12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403060825269_InitialCreate13.cs" />
+    <Compile Include="Migrations\202403060825269_InitialCreate13.designer.cs">
+      <DependentUpon>202403060825269_InitialCreate13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202403191737345_InitialCreate14.cs" />
+    <Compile Include="Migrations\202403191737345_InitialCreate14.designer.cs">
+      <DependentUpon>202403191737345_InitialCreate14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404011253328_InitialCreate15.cs" />
+    <Compile Include="Migrations\202404011253328_InitialCreate15.designer.cs">
+      <DependentUpon>202404011253328_InitialCreate15.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404020701079_InitialCreate16.cs" />
+    <Compile Include="Migrations\202404020701079_InitialCreate16.designer.cs">
+      <DependentUpon>202404020701079_InitialCreate16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404031317215_InitialCreate17.cs" />
+    <Compile Include="Migrations\202404031317215_InitialCreate17.designer.cs">
+      <DependentUpon>202404031317215_InitialCreate17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041301355_InitialCreate18.cs" />
+    <Compile Include="Migrations\202404041301355_InitialCreate18.designer.cs">
+      <DependentUpon>202404041301355_InitialCreate18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041317420_InitialCreate19.cs" />
+    <Compile Include="Migrations\202404041317420_InitialCreate19.designer.cs">
+      <DependentUpon>202404041317420_InitialCreate19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404041341178_InitialCreate20.cs" />
+    <Compile Include="Migrations\202404041341178_InitialCreate20.designer.cs">
+      <DependentUpon>202404041341178_InitialCreate20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404080557269_InitialCreate21.cs" />
+    <Compile Include="Migrations\202404080557269_InitialCreate21.designer.cs">
+      <DependentUpon>202404080557269_InitialCreate21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404081022217_InitialCreate22.cs" />
+    <Compile Include="Migrations\202404081022217_InitialCreate22.designer.cs">
+      <DependentUpon>202404081022217_InitialCreate22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404081353085_InitialCreate23.cs" />
+    <Compile Include="Migrations\202404081353085_InitialCreate23.designer.cs">
+      <DependentUpon>202404081353085_InitialCreate23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404091039410_InitialCreate24.cs" />
+    <Compile Include="Migrations\202404091039410_InitialCreate24.designer.cs">
+      <DependentUpon>202404091039410_InitialCreate24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404091054581_InitialCreate25.cs" />
+    <Compile Include="Migrations\202404091054581_InitialCreate25.designer.cs">
+      <DependentUpon>202404091054581_InitialCreate25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404091245092_InitialCreate26.cs" />
+    <Compile Include="Migrations\202404091245092_InitialCreate26.designer.cs">
+      <DependentUpon>202404091245092_InitialCreate26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404100634004_InitialCreate27.cs" />
+    <Compile Include="Migrations\202404100634004_InitialCreate27.designer.cs">
+      <DependentUpon>202404100634004_InitialCreate27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404101220554_InitialCreate28.cs" />
+    <Compile Include="Migrations\202404101220554_InitialCreate28.designer.cs">
+      <DependentUpon>202404101220554_InitialCreate28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404190756370_InitialCreate29.cs" />
+    <Compile Include="Migrations\202404190756370_InitialCreate29.designer.cs">
+      <DependentUpon>202404190756370_InitialCreate29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404221008061_InitialCreate30.cs" />
+    <Compile Include="Migrations\202404221008061_InitialCreate30.designer.cs">
+      <DependentUpon>202404221008061_InitialCreate30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404251204554_InitialCreate31.cs" />
+    <Compile Include="Migrations\202404251204554_InitialCreate31.designer.cs">
+      <DependentUpon>202404251204554_InitialCreate31.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404251215325_InitialCreate32.cs" />
+    <Compile Include="Migrations\202404251215325_InitialCreate32.designer.cs">
+      <DependentUpon>202404251215325_InitialCreate32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405031133343_InitialCreate33.cs" />
+    <Compile Include="Migrations\202405031133343_InitialCreate33.designer.cs">
+      <DependentUpon>202405031133343_InitialCreate33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405031145301_InitialCreate34.cs" />
+    <Compile Include="Migrations\202405031145301_InitialCreate34.designer.cs">
+      <DependentUpon>202405031145301_InitialCreate34.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405031156401_InitialCreate35.cs" />
+    <Compile Include="Migrations\202405031156401_InitialCreate35.designer.cs">
+      <DependentUpon>202405031156401_InitialCreate35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405060822222_InitialCreate36.cs" />
+    <Compile Include="Migrations\202405060822222_InitialCreate36.designer.cs">
+      <DependentUpon>202405060822222_InitialCreate36.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405071242106_InitialCreate37.cs" />
+    <Compile Include="Migrations\202405071242106_InitialCreate37.designer.cs">
+      <DependentUpon>202405071242106_InitialCreate37.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405081205405_InitialCreate38.cs" />
+    <Compile Include="Migrations\202405081205405_InitialCreate38.designer.cs">
+      <DependentUpon>202405081205405_InitialCreate38.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405091157549_InitialCreate39.cs" />
+    <Compile Include="Migrations\202405091157549_InitialCreate39.designer.cs">
+      <DependentUpon>202405091157549_InitialCreate39.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405161431154_InitialCreate40.cs" />
+    <Compile Include="Migrations\202405161431154_InitialCreate40.designer.cs">
+      <DependentUpon>202405161431154_InitialCreate40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405171244408_InitialCreate41.cs" />
+    <Compile Include="Migrations\202405171244408_InitialCreate41.designer.cs">
+      <DependentUpon>202405171244408_InitialCreate41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405270912272_InitialCreate42.cs" />
+    <Compile Include="Migrations\202405270912272_InitialCreate42.designer.cs">
+      <DependentUpon>202405270912272_InitialCreate42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271112346_InitialCreate43.cs" />
+    <Compile Include="Migrations\202405271112346_InitialCreate43.designer.cs">
+      <DependentUpon>202405271112346_InitialCreate43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271329122_InitialCreate44.cs" />
+    <Compile Include="Migrations\202405271329122_InitialCreate44.designer.cs">
+      <DependentUpon>202405271329122_InitialCreate44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271345055_InitialCreate45.cs" />
+    <Compile Include="Migrations\202405271345055_InitialCreate45.designer.cs">
+      <DependentUpon>202405271345055_InitialCreate45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405271404421_InitialCreate46.cs" />
+    <Compile Include="Migrations\202405271404421_InitialCreate46.designer.cs">
+      <DependentUpon>202405271404421_InitialCreate46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405280813164_InitialCreate47.cs" />
+    <Compile Include="Migrations\202405280813164_InitialCreate47.designer.cs">
+      <DependentUpon>202405280813164_InitialCreate47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202405291121256_InitialCreate48.cs" />
+    <Compile Include="Migrations\202405291121256_InitialCreate48.designer.cs">
+      <DependentUpon>202405291121256_InitialCreate48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406030832547_InitialCreate49.cs" />
+    <Compile Include="Migrations\202406030832547_InitialCreate49.designer.cs">
+      <DependentUpon>202406030832547_InitialCreate49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406041031002_InitialCreate50.cs" />
+    <Compile Include="Migrations\202406041031002_InitialCreate50.designer.cs">
+      <DependentUpon>202406041031002_InitialCreate50.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406071124307_InitialCreate51.cs" />
+    <Compile Include="Migrations\202406071124307_InitialCreate51.designer.cs">
+      <DependentUpon>202406071124307_InitialCreate51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406071129504_InitialCreate52.cs" />
+    <Compile Include="Migrations\202406071129504_InitialCreate52.designer.cs">
+      <DependentUpon>202406071129504_InitialCreate52.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406071317096_InitialCreate53.cs" />
+    <Compile Include="Migrations\202406071317096_InitialCreate53.designer.cs">
+      <DependentUpon>202406071317096_InitialCreate53.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406130849055_InitialCreate54.cs" />
+    <Compile Include="Migrations\202406130849055_InitialCreate54.designer.cs">
+      <DependentUpon>202406130849055_InitialCreate54.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406130858468_InitialCreate55.cs" />
+    <Compile Include="Migrations\202406130858468_InitialCreate55.designer.cs">
+      <DependentUpon>202406130858468_InitialCreate55.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406211233446_InitialCreate56.cs" />
+    <Compile Include="Migrations\202406211233446_InitialCreate56.designer.cs">
+      <DependentUpon>202406211233446_InitialCreate56.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406260856143_InitialCreate57.cs" />
+    <Compile Include="Migrations\202406260856143_InitialCreate57.designer.cs">
+      <DependentUpon>202406260856143_InitialCreate57.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407021627161_InitialCreate58.cs" />
+    <Compile Include="Migrations\202407021627161_InitialCreate58.designer.cs">
+      <DependentUpon>202407021627161_InitialCreate58.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407041135256_InitialCreate59.cs" />
+    <Compile Include="Migrations\202407041135256_InitialCreate59.designer.cs">
+      <DependentUpon>202407041135256_InitialCreate59.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407120835597_InitialCreate60.cs" />
+    <Compile Include="Migrations\202407120835597_InitialCreate60.designer.cs">
+      <DependentUpon>202407120835597_InitialCreate60.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407170618571_InitialCreate61.cs" />
+    <Compile Include="Migrations\202407170618571_InitialCreate61.designer.cs">
+      <DependentUpon>202407170618571_InitialCreate61.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407191400373_InitialCreate62.cs" />
+    <Compile Include="Migrations\202407191400373_InitialCreate62.designer.cs">
+      <DependentUpon>202407191400373_InitialCreate62.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202407310835031_InitialCreate63.cs" />
+    <Compile Include="Migrations\202407310835031_InitialCreate63.designer.cs">
+      <DependentUpon>202407310835031_InitialCreate63.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408061102593_InitialCreate64.cs" />
+    <Compile Include="Migrations\202408061102593_InitialCreate64.designer.cs">
+      <DependentUpon>202408061102593_InitialCreate64.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202408151305470_InitialCreate65.cs" />
+    <Compile Include="Migrations\202408151305470_InitialCreate65.designer.cs">
+      <DependentUpon>202408151305470_InitialCreate65.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202409200949224_InitialCreate66.cs" />
+    <Compile Include="Migrations\202409200949224_InitialCreate66.designer.cs">
+      <DependentUpon>202409200949224_InitialCreate66.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410101341550_InitialCreate67.cs" />
+    <Compile Include="Migrations\202410101341550_InitialCreate67.designer.cs">
+      <DependentUpon>202410101341550_InitialCreate67.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410151114275_InitialCreate68.cs" />
+    <Compile Include="Migrations\202410151114275_InitialCreate68.designer.cs">
+      <DependentUpon>202410151114275_InitialCreate68.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410211302550_InitialCreate69.cs" />
+    <Compile Include="Migrations\202410211302550_InitialCreate69.designer.cs">
+      <DependentUpon>202410211302550_InitialCreate69.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410241014529_InitialCreate70.cs" />
+    <Compile Include="Migrations\202410241014529_InitialCreate70.designer.cs">
+      <DependentUpon>202410241014529_InitialCreate70.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202410291148519_InitialCreate71.cs" />
+    <Compile Include="Migrations\202410291148519_InitialCreate71.designer.cs">
+      <DependentUpon>202410291148519_InitialCreate71.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411051339094_InitialCreate72.cs" />
+    <Compile Include="Migrations\202411051339094_InitialCreate72.designer.cs">
+      <DependentUpon>202411051339094_InitialCreate72.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411071255494_InitialCreate73.cs" />
+    <Compile Include="Migrations\202411071255494_InitialCreate73.designer.cs">
+      <DependentUpon>202411071255494_InitialCreate73.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202411120628322_InitialCreate74.cs" />
+    <Compile Include="Migrations\202411120628322_InitialCreate74.designer.cs">
+      <DependentUpon>202411120628322_InitialCreate74.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412041205402_InitialCreate75.cs" />
+    <Compile Include="Migrations\202412041205402_InitialCreate75.designer.cs">
+      <DependentUpon>202412041205402_InitialCreate75.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502101402127_InitialCreate76.cs" />
+    <Compile Include="Migrations\202502101402127_InitialCreate76.designer.cs">
+      <DependentUpon>202502101402127_InitialCreate76.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502201048371_InitialCreate77.cs" />
+    <Compile Include="Migrations\202502201048371_InitialCreate77.designer.cs">
+      <DependentUpon>202502201048371_InitialCreate77.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202503111223421_InitialCreate78.cs" />
+    <Compile Include="Migrations\202503111223421_InitialCreate78.designer.cs">
+      <DependentUpon>202503111223421_InitialCreate78.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202505201003158_InitialCreate79.cs" />
+    <Compile Include="Migrations\202505201003158_InitialCreate79.designer.cs">
+      <DependentUpon>202505201003158_InitialCreate79.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AnodizingProcessProfile.cs" />
+    <Compile Include="Models\AnodizingProcessProfileGeneral.cs" />
+    <Compile Include="Models\AppendixSpesification.cs" />
+    <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\ClientCard.cs" />
+    <Compile Include="Models\CommercialOffer.cs" />
+    <Compile Include="Models\CommercialOfferGeneral.cs" />
+    <Compile Include="Models\DataPlanProfile.cs" />
+    <Compile Include="Models\DetailReceptionMaterials.cs" />
+    <Compile Include="Models\ExtensiveReceptionProfile.cs" />
+    <Compile Include="Models\HitchAluminumProfile .cs" />
+    <Compile Include="Models\HitchAluminumProfileGeneral.cs" />
+    <Compile Include="Models\ImageProfile.cs" />
+    <Compile Include="Models\ImageProfileParking.cs" />
+    <Compile Include="Models\LaboratoryAnalysis.cs" />
+    <Compile Include="Models\LaboratoryAnalysisGeneral.cs" />
+    <Compile Include="Models\PackingAluminumProfile.cs" />
+    <Compile Include="Models\PackingAluminumProfileGeneral.cs" />
+    <Compile Include="Models\PriceListProfile.cs" />
+    <Compile Include="Models\ProfileCard.cs" />
+    <Compile Include="Models\ProfileCardComercial.cs" />
+    <Compile Include="Models\ProfileConsumptionWarehouse.cs" />
+    <Compile Include="Models\ProfileConsumptionWarehouseGeneral.cs" />
+    <Compile Include="Models\ProfileProperty.cs" />
+    <Compile Include="Models\ReceptionMaterials.cs" />
+    <Compile Include="Models\ShotBlastingProfile.cs" />
+    <Compile Include="Models\ShotBlastingProfilesGeneral.cs" />
+    <Compile Include="Models\SpecificationAllDescription.cs" />
+    <Compile Include="Models\SpecificationEloksalProfile.cs" />
+    <Compile Include="Models\SummaryTableProfile.cs" />
+    <Compile Include="Models\TapeProtectiveProcessProfile.cs" />
+    <Compile Include="Models\TapeProtectiveProcessProfileGeneral.cs" />
+    <Compile Include="Models\TechnicalSupport.cs" />
+    <Compile Include="Models\UserAccountModel.cs" />
+    <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Models\СharacteristicProfile.cs" />
+    <Compile Include="Models\СuttingFacingGeneralProfile.cs" />
+    <Compile Include="Models\СuttingFacingProfile.cs" />
+    <Compile Include="Repositories\AnodizingProcessProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\AnodizingProcessProfileRepository.cs" />
+    <Compile Include="Repositories\Base\BaseRepo.cs" />
+    <Compile Include="Repositories\Base\IBaseRepository.cs" />
+    <Compile Include="Repositories\CharacteristicProfileRepository.cs" />
+    <Compile Include="Repositories\ClientCardRepository.cs" />
+    <Compile Include="Repositories\CommercialOfferGeneralRepository.cs" />
+    <Compile Include="Repositories\CommercialOfferRepository.cs" />
+    <Compile Include="Repositories\DataofPlanRepository.cs" />
+    <Compile Include="Repositories\DetailReceptionMaterialsRepository.cs" />
+    <Compile Include="Repositories\ExtensiveReceptionProfileRepository.cs" />
+    <Compile Include="Repositories\HitchAluminumProfileGeneralsRepository.cs" />
+    <Compile Include="Repositories\HitchAluminumProfilesRepository.cs" />
+    <Compile Include="Repositories\ImageHelper.cs" />
+    <Compile Include="Repositories\ImageProfileParkingRepository.cs" />
+    <Compile Include="Repositories\ImageProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAnodizingProcessProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IAnodizingProcessProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IClientCardRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICommercialOfferGeneralRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICommercialOfferRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDataofPlanRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IDetailReceptionMaterialsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IExtensiveReceptionProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IHitchAluminumProfileGeneralsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IHitchAluminumProfilesRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IImageProfileParkingRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IImageProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ILaboratoryAnalysisRepositorycs.cs" />
+    <Compile Include="Repositories\Interfaces\IPackingAluminumProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPackingAluminumProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProfileConsumptionWarehouseGeneralRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProfileConsumptionWarehouseRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITapeProtectiveProcessProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITapeProtectiveProcessProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPriceListProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProfileCardComercialRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProfileCardRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProfilePropertyRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IReceptionMaterialsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IShotBlastingProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IShotBlastingProfilesGeneralsRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISpecificationAllDescriptionRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISpecificationEloksalProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ITechnicalSupportRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IСharacteristicProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IСuttingFacingGeneralProfileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IСuttingFacingProfileRepository.cs" />
+    <Compile Include="Repositories\LaboratoryAnalysisRepository.cs" />
+    <Compile Include="Repositories\PackingAluminumProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\PackingAluminumProfileRepository.cs" />
+    <Compile Include="Repositories\PriceListProfileRepository.cs" />
+    <Compile Include="Repositories\ProfileCardComercialRepository.cs" />
+    <Compile Include="Repositories\ProfileCardRepository.cs" />
+    <Compile Include="Repositories\ProfileConsumptionWarehouseGeneralRepository.cs" />
+    <Compile Include="Repositories\ProfileConsumptionWarehouseRepository.cs" />
+    <Compile Include="Repositories\ProfilePropertyRepository.cs" />
+    <Compile Include="Repositories\ReceptionMaterialsRepository.cs" />
+    <Compile Include="Repositories\ShotBlastingProfileRepository.cs" />
+    <Compile Include="Repositories\ShotBlastingProfilesGeneralsRepository.cs" />
+    <Compile Include="Repositories\SpecificationAllDescriptionRepository.cs" />
+    <Compile Include="Repositories\SpecificationEloksalProfileRepository.cs" />
+    <Compile Include="Repositories\TapeProtectiveProcessProfileGeneralRepository.cs" />
+    <Compile Include="Repositories\TapeProtectiveProcessProfileRepository.cs" />
+    <Compile Include="Repositories\TechnicalSupportRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\СuttingFacingGeneralProfileRepository.cs" />
+    <Compile Include="Repositories\СuttingFacingProfileRepository.cs" />
+    <Compile Include="ViewModels\AnodizingProcessProfileViewModel.cs" />
+    <Compile Include="ViewModels\ByteArrayToBitmapImageConverter.cs" />
+    <Compile Include="ViewModels\CharacteristicViewModel.cs" />
+    <Compile Include="ViewModels\ClientCardViewModel.cs" />
+    <Compile Include="ViewModels\CommercialDepartmentViewModel.cs" />
+    <Compile Include="ViewModels\CommercialOfferViewModel.cs" />
+    <Compile Include="ViewModels\CuttingFacingProfileTwoViewModel.cs" />
+    <Compile Include="ViewModels\DataOfPlanViewModel.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\ExtensiveReceptionViewModel.cs" />
+    <Compile Include="ViewModels\HitchAluminumProfilesViewModel.cs" />
+    <Compile Include="ViewModels\LaboratoryAnalysisViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PackingAluminumProfileViewModel.cs" />
+    <Compile Include="ViewModels\PriceListViewModel.cs" />
+    <Compile Include="ViewModels\ProductionProfileViewModel.cs" />
+    <Compile Include="ViewModels\ProfileCardViewModel.cs" />
+    <Compile Include="ViewModels\ProfileConsumptionWarehouseViewModel.cs" />
+    <Compile Include="ViewModels\ProfilePropertyViewModel.cs" />
+    <Compile Include="ViewModels\ReceptionMaterialsViewModel.cs" />
+    <Compile Include="ViewModels\ReferenceViewModel.cs" />
+    <Compile Include="ViewModels\ReportsViewModel.cs" />
+    <Compile Include="ViewModels\ShotBlastingViewModel.cs" />
+    <Compile Include="ViewModels\SpecificationEloksalProfileViewModel.cs" />
+    <Compile Include="ViewModels\StorehouseViewModel.cs" />
+    <Compile Include="ViewModels\TapeProtectiveProcessViewModel.cs" />
+    <Compile Include="ViewModels\TechnicalSupportViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ViewModelCommand.cs" />
+    <Compile Include="ViewModels\СuttingFacingProfileViewModel.cs" />
+    <Compile Include="View\AnodizingProcessProfileView.xaml.cs">
+      <DependentUpon>AnodizingProcessProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CharacteristicView.xaml.cs">
+      <DependentUpon>CharacteristicView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ClientCardView.xaml.cs">
+      <DependentUpon>ClientCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommercialDepartmentView.xaml.cs">
+      <DependentUpon>CommercialDepartmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CommercialOfferView.xaml.cs">
+      <DependentUpon>CommercialOfferView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DateOfPlanView.xaml.cs">
+      <DependentUpon>DateOfPlanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeCardView.xaml.cs">
+      <DependentUpon>EmployeeCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\EmployeeView.xaml.cs">
+      <DependentUpon>EmployeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DetailReceptionMaterialsView.xaml.cs">
+      <DependentUpon>DetailReceptionMaterialsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExtensiveReceptionProfileView.xaml.cs">
+      <DependentUpon>ExtensiveReceptionProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\HitchAluminumProfileView.xaml.cs">
+      <DependentUpon>HitchAluminumProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LaboratoryView.xaml.cs">
+      <DependentUpon>LaboratoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LaboratoryAnalysisView.xaml.cs">
+      <DependentUpon>LaboratoryAnalysisView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="View\PackingAluminumProfileView.xaml.cs">
+      <DependentUpon>PackingAluminumProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PriceListView.xaml.cs">
+      <DependentUpon>PriceListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProductionProfileView.xaml.cs">
+      <DependentUpon>ProductionProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileCardView.xaml.cs">
+      <DependentUpon>ProfileCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfileConsumptionWarehouseView.xaml.cs">
+      <DependentUpon>ProfileConsumptionWarehouseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ProfilePropertyView.xaml.cs">
+      <DependentUpon>ProfilePropertyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReferenceProfileView.xaml.cs">
+      <DependentUpon>ReferenceProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReferenceView.xaml.cs">
+      <DependentUpon>ReferenceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecificationTwo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecificationTwo.Designer.cs">
+      <DependentUpon>ReportSpecificationTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReportsView.xaml.cs">
+      <DependentUpon>ReportsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\LabelProfileReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\LabelProfileReport1.Designer.cs">
+      <DependentUpon>LabelProfileReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportClientAndNumber.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportClientAndNumber.Designer.cs">
+      <DependentUpon>ReportClientAndNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportExtensiveReception.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportExtensiveReception.Designer.cs">
+      <DependentUpon>ReportExtensiveReception.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportOffer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportOffer.Designer.cs">
+      <DependentUpon>ReportOffer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportPackingProfile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportPackingProfile.Designer.cs">
+      <DependentUpon>ReportPackingProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportShipment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportShipment.Designer.cs">
+      <DependentUpon>ReportShipment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportShotAndAnod.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportShotAndAnod.Designer.cs">
+      <DependentUpon>ReportShotAndAnod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecification.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecification.Designer.cs">
+      <DependentUpon>ReportSpecification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecificationIndividualClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportSpecificationIndividualClient.Designer.cs">
+      <DependentUpon>ReportSpecificationIndividualClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportTypeProtective.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportTypeProtective.Designer.cs">
+      <DependentUpon>ReportTypeProtective.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Report\ReportСuttingFacing.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Report\ReportСuttingFacing.Designer.cs">
+      <DependentUpon>ReportСuttingFacing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShipmentByPalletsView.xaml.cs">
+      <DependentUpon>ShipmentByPalletsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShotBlastingView.xaml.cs">
+      <DependentUpon>ShotBlastingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpecificationEloksalProfileView.xaml.cs">
+      <DependentUpon>SpecificationEloksalProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StorehouseView.xaml.cs">
+      <DependentUpon>StorehouseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TapeProtectiveProcessProfileView.xaml.cs">
+      <DependentUpon>TapeProtectiveProcessProfileView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TechnicalSupportView.xaml.cs">
+      <DependentUpon>TechnicalSupportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\TechnicalSupportViewWindow.xaml.cs">
+      <DependentUpon>TechnicalSupportViewWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowCommercialOffer.xaml.cs">
+      <DependentUpon>WindowCommercialOffer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowReportsShift.xaml.cs">
+      <DependentUpon>WindowReportsShift.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WindowSpecification.xaml.cs">
+      <DependentUpon>WindowSpecification.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\СuttingFacingProfileTwoView..xaml.cs">
+      <DependentUpon>СuttingFacingProfileTwoView..xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\СuttingFacingProfileView.xaml.cs">
+      <DependentUpon>СuttingFacingProfileView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="CustomControls\BindablePasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\ButtonStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\UIColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AnodizingProcessProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CharacteristicView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ClientCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CommercialDepartmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CommercialOfferView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DateOfPlanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DetailReceptionMaterialsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ExtensiveReceptionProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\HitchAluminumProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LaboratoryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LaboratoryAnalysisView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PackingAluminumProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\PriceListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProductionProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfileCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfileConsumptionWarehouseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ProfilePropertyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReferenceProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReferenceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ReportsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShipmentByPalletsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ShotBlastingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SpecificationEloksalProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StorehouseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TapeProtectiveProcessProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TechnicalSupportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\TechnicalSupportViewWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowCommercialOffer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowReportsShift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WindowSpecification.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\СuttingFacingProfileTwoView..xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\СuttingFacingProfileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Migrations\202402161129033_InitialCreate.resx">
+      <DependentUpon>202402161129033_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402291344073_InitialCreate1.resx">
+      <DependentUpon>202402291344073_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403011113242_InitialCreate2.resx">
+      <DependentUpon>202403011113242_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403011137071_InitialCreate3.resx">
+      <DependentUpon>202403011137071_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403011318434_InitialCreate4.resx">
+      <DependentUpon>202403011318434_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403040754402_InitialCreate5.resx">
+      <DependentUpon>202403040754402_InitialCreate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403040833554_InitialCreate6.resx">
+      <DependentUpon>202403040833554_InitialCreate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403041049072_InitialCreate7.resx">
+      <DependentUpon>202403041049072_InitialCreate7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403041155417_InitialCreate8.resx">
+      <DependentUpon>202403041155417_InitialCreate8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403050842030_InitialCreate9.resx">
+      <DependentUpon>202403050842030_InitialCreate9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403051133286_InitialCreate10.resx">
+      <DependentUpon>202403051133286_InitialCreate10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403051148290_InitialCreate11.resx">
+      <DependentUpon>202403051148290_InitialCreate11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403051310370_InitialCreate12.resx">
+      <DependentUpon>202403051310370_InitialCreate12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403060825269_InitialCreate13.resx">
+      <DependentUpon>202403060825269_InitialCreate13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403191737345_InitialCreate14.resx">
+      <DependentUpon>202403191737345_InitialCreate14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404011253328_InitialCreate15.resx">
+      <DependentUpon>202404011253328_InitialCreate15.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404020701079_InitialCreate16.resx">
+      <DependentUpon>202404020701079_InitialCreate16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404031317215_InitialCreate17.resx">
+      <DependentUpon>202404031317215_InitialCreate17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041301355_InitialCreate18.resx">
+      <DependentUpon>202404041301355_InitialCreate18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041317420_InitialCreate19.resx">
+      <DependentUpon>202404041317420_InitialCreate19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404041341178_InitialCreate20.resx">
+      <DependentUpon>202404041341178_InitialCreate20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404080557269_InitialCreate21.resx">
+      <DependentUpon>202404080557269_InitialCreate21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404081022217_InitialCreate22.resx">
+      <DependentUpon>202404081022217_InitialCreate22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404081353085_InitialCreate23.resx">
+      <DependentUpon>202404081353085_InitialCreate23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404091039410_InitialCreate24.resx">
+      <DependentUpon>202404091039410_InitialCreate24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404091054581_InitialCreate25.resx">
+      <DependentUpon>202404091054581_InitialCreate25.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404091245092_InitialCreate26.resx">
+      <DependentUpon>202404091245092_InitialCreate26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404100634004_InitialCreate27.resx">
+      <DependentUpon>202404100634004_InitialCreate27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101220554_InitialCreate28.resx">
+      <DependentUpon>202404101220554_InitialCreate28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404190756370_InitialCreate29.resx">
+      <DependentUpon>202404190756370_InitialCreate29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404221008061_InitialCreate30.resx">
+      <DependentUpon>202404221008061_InitialCreate30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404251204554_InitialCreate31.resx">
+      <DependentUpon>202404251204554_InitialCreate31.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404251215325_InitialCreate32.resx">
+      <DependentUpon>202404251215325_InitialCreate32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405031133343_InitialCreate33.resx">
+      <DependentUpon>202405031133343_InitialCreate33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405031145301_InitialCreate34.resx">
+      <DependentUpon>202405031145301_InitialCreate34.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405031156401_InitialCreate35.resx">
+      <DependentUpon>202405031156401_InitialCreate35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405060822222_InitialCreate36.resx">
+      <DependentUpon>202405060822222_InitialCreate36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405071242106_InitialCreate37.resx">
+      <DependentUpon>202405071242106_InitialCreate37.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405081205405_InitialCreate38.resx">
+      <DependentUpon>202405081205405_InitialCreate38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405091157549_InitialCreate39.resx">
+      <DependentUpon>202405091157549_InitialCreate39.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405161431154_InitialCreate40.resx">
+      <DependentUpon>202405161431154_InitialCreate40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405171244408_InitialCreate41.resx">
+      <DependentUpon>202405171244408_InitialCreate41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405270912272_InitialCreate42.resx">
+      <DependentUpon>202405270912272_InitialCreate42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271112346_InitialCreate43.resx">
+      <DependentUpon>202405271112346_InitialCreate43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271329122_InitialCreate44.resx">
+      <DependentUpon>202405271329122_InitialCreate44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271345055_InitialCreate45.resx">
+      <DependentUpon>202405271345055_InitialCreate45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405271404421_InitialCreate46.resx">
+      <DependentUpon>202405271404421_InitialCreate46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405280813164_InitialCreate47.resx">
+      <DependentUpon>202405280813164_InitialCreate47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202405291121256_InitialCreate48.resx">
+      <DependentUpon>202405291121256_InitialCreate48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406030832547_InitialCreate49.resx">
+      <DependentUpon>202406030832547_InitialCreate49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406041031002_InitialCreate50.resx">
+      <DependentUpon>202406041031002_InitialCreate50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406071124307_InitialCreate51.resx">
+      <DependentUpon>202406071124307_InitialCreate51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406071129504_InitialCreate52.resx">
+      <DependentUpon>202406071129504_InitialCreate52.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406071317096_InitialCreate53.resx">
+      <DependentUpon>202406071317096_InitialCreate53.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406130849055_InitialCreate54.resx">
+      <DependentUpon>202406130849055_InitialCreate54.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406130858468_InitialCreate55.resx">
+      <DependentUpon>202406130858468_InitialCreate55.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406211233446_InitialCreate56.resx">
+      <DependentUpon>202406211233446_InitialCreate56.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406260856143_InitialCreate57.resx">
+      <DependentUpon>202406260856143_InitialCreate57.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407021627161_InitialCreate58.resx">
+      <DependentUpon>202407021627161_InitialCreate58.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407041135256_InitialCreate59.resx">
+      <DependentUpon>202407041135256_InitialCreate59.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407120835597_InitialCreate60.resx">
+      <DependentUpon>202407120835597_InitialCreate60.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407170618571_InitialCreate61.resx">
+      <DependentUpon>202407170618571_InitialCreate61.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407191400373_InitialCreate62.resx">
+      <DependentUpon>202407191400373_InitialCreate62.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202407310835031_InitialCreate63.resx">
+      <DependentUpon>202407310835031_InitialCreate63.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408061102593_InitialCreate64.resx">
+      <DependentUpon>202408061102593_InitialCreate64.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202408151305470_InitialCreate65.resx">
+      <DependentUpon>202408151305470_InitialCreate65.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202409200949224_InitialCreate66.resx">
+      <DependentUpon>202409200949224_InitialCreate66.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410101341550_InitialCreate67.resx">
+      <DependentUpon>202410101341550_InitialCreate67.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410151114275_InitialCreate68.resx">
+      <DependentUpon>202410151114275_InitialCreate68.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410211302550_InitialCreate69.resx">
+      <DependentUpon>202410211302550_InitialCreate69.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410241014529_InitialCreate70.resx">
+      <DependentUpon>202410241014529_InitialCreate70.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202410291148519_InitialCreate71.resx">
+      <DependentUpon>202410291148519_InitialCreate71.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411051339094_InitialCreate72.resx">
+      <DependentUpon>202411051339094_InitialCreate72.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411071255494_InitialCreate73.resx">
+      <DependentUpon>202411071255494_InitialCreate73.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202411120628322_InitialCreate74.resx">
+      <DependentUpon>202411120628322_InitialCreate74.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412041205402_InitialCreate75.resx">
+      <DependentUpon>202412041205402_InitialCreate75.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502101402127_InitialCreate76.resx">
+      <DependentUpon>202502101402127_InitialCreate76.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502201048371_InitialCreate77.resx">
+      <DependentUpon>202502201048371_InitialCreate77.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202503111223421_InitialCreate78.resx">
+      <DependentUpon>202503111223421_InitialCreate78.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202505201003158_InitialCreate79.resx">
+      <DependentUpon>202505201003158_InitialCreate79.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportSpecificationTwo.resx">
+      <DependentUpon>ReportSpecificationTwo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\LabelProfileReport1.resx">
+      <DependentUpon>LabelProfileReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportClientAndNumber.resx">
+      <DependentUpon>ReportClientAndNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportExtensiveReception.resx">
+      <DependentUpon>ReportExtensiveReception.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportOffer.resx">
+      <DependentUpon>ReportOffer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportPackingProfile.resx">
+      <DependentUpon>ReportPackingProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportShipment.resx">
+      <DependentUpon>ReportShipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportShotAndAnod.resx">
+      <DependentUpon>ReportShotAndAnod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportSpecification.resx">
+      <DependentUpon>ReportSpecification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportSpecificationIndividualClient.resx">
+      <DependentUpon>ReportSpecificationIndividualClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportTypeProtective.resx">
+      <DependentUpon>ReportTypeProtective.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Report\ReportСuttingFacing.resx">
+      <DependentUpon>ReportСuttingFacing.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\key-icon.png" />
+    <Resource Include="Images\user-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
+    <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

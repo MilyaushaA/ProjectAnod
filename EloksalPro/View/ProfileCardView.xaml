@@ -1,0 +1,225 @@
+﻿<Window x:Class="EloksalPro.View.ProfileCardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:local="clr-namespace:EloksalPro.View"
+        mc:Ignorable="d"
+        Title="ProfileCardView" Height="710" Width="1270"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:ProfileCardViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"                    
+            BorderThickness="3"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="0"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}" 
+                                Click="btnClose_Click" HorizontalAlignment="Right" Width="20" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="20"
+                                Style="{StaticResource controlButton}" 
+                                Tag="{StaticResource color8}"
+                                Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+
+                <TextBlock Grid.Row="1" Text="Карта профиля" 
+                       Style="{StaticResource controlTextBlock}"  FontSize="18" />
+                <Grid Grid.Row="2" HorizontalAlignment="Left">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="350"/>
+                        <ColumnDefinition Width="260"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Image Name="image" Grid.Column="0" Grid.Row="0" Grid.RowSpan="16" Source="{Binding DrawingSourse,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                           Visibility="Visible"  Margin="5" RenderOptions.BitmapScalingMode="HighQuality" MouseWheel="onMouseWheel_Scroll"  />
+                    <Image Name="imagePallet" Grid.Column="1" Grid.Row="0" Grid.RowSpan="16" Source="{Binding DrawingPalletSourse,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" 
+                           Visibility="Visible"  Margin="5" RenderOptions.BitmapScalingMode="HighQuality" MouseWheel="onMouseWheel_ScrollPalet"  />
+                    <TextBox Grid.Column="0" Grid.Row="14" Name="txtId" Text="{Binding Id,UpdateSourceTrigger=PropertyChanged}"
+                          Visibility="Hidden"  Style="{StaticResource controlText}" />
+                    
+                    <TextBlock Grid.Column="2" Grid.Row="0"  Text="Номер профиля:" 
+                      Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1"  Text="Наименование заказчика:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2"  Text="Номенклатура заказчика:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3"  Text="Номенклатура для спецификации:" 
+                       Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="4"  Text="Номенклатура профиля:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="5"  Text="Длина профиля (мм):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="5"  Text="Длина 2(мм):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="6"  Text="Вид покрытия:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="7"  Text="Цвет покрытия:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="8"  Text="Толщина покрытия:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="9"  Text="Торцовка:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="10"  Text="Распил в размер:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="11"  Text="Пленка защитная:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="12"  Text="Стрейч-пленка:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="13"  Text="Вес (г/м):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="14"  Text="Внутренний периметр (мм):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="15"  Text="Внешний периметр (мм):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="16"  Text="Общий периметр (мм):" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="17"  Text="Площадь поперечного сечения (мм2):" 
+                       Style="{StaticResource controlTextBlock}"/>
+
+                    <TextBox Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3"  x:Name="txtEloksalNo"
+                       Text="{Binding EloksalNo,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+                    <ComboBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3" x:Name="txtClientName"
+                       ItemsSource="{Binding ClientList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ClientSource, Mode=TwoWay}"  Margin="3"/>
+                    <ComboBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="3"  x:Name="txtEloksalNoCommercial"
+                       ItemsSource="{Binding ClientProfileList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ClientProfileSource, Mode=TwoWay}"  Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3"  x:Name="txtEloksalNoCommercialForSpecification"
+                       Text="{Binding NomenclatureSpecification,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="4" Grid.ColumnSpan="3"  x:Name="txtNomenclatureProfile"
+                       Text="{Binding Nomenclature,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}" IsEnabled="False" Margin="3"/>
+                    <ComboBox Grid.Column="3" Grid.Row="5"  x:Name="txtLenghtProfile"
+                       ItemsSource="{Binding LenghtList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding LenghtSource, Mode=TwoWay}" Margin="3"  />
+                    <ComboBox Grid.Column="5" Grid.Row="5"  x:Name="txtLenghtProfileTwo"
+                       ItemsSource="{Binding LenghtList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding LenghtSourceTwo, Mode=TwoWay}" Margin="3"  IsEditable="True" StaysOpenOnEdit="True" />
+                    <ComboBox Grid.Column="3" Grid.Row="6" Grid.ColumnSpan="3"  x:Name="txtTypeAnod"
+                       ItemsSource="{Binding TypeAnodList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding TypeAnodSource, Mode=TwoWay}"  Margin="3"/>
+                    <ComboBox Grid.Column="3" Grid.Row="7" x:Name="txtColorAnod" Grid.ColumnSpan="3" 
+                       ItemsSource="{Binding ColorAnodList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ColorAnodSource, Mode=TwoWay}"  Margin="3"/>
+                    <ComboBox Grid.Column="3" Grid.Row="8" x:Name="txtThicknessCoating" Grid.ColumnSpan="3" 
+                       ItemsSource="{Binding ThicknessCoatingList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ThicknessCoatingSource, Mode=TwoWay}"  Margin="3"/>
+                    <CheckBox Grid.Column="3" Grid.Row="9" x:Name="txtTrimming" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" IsChecked="{Binding Trimming,UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="10" x:Name="txtSawed" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" IsChecked="{Binding Sawed,UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="11" x:Name="txtTapeProtective" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" IsChecked="{Binding TapeProtective,UpdateSourceTrigger=PropertyChanged}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="12" x:Name="txtStretch" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="3,0,0,0" IsChecked="{Binding Stretch,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Column="3" Grid.Row="13" x:Name="txtWeightMeter" Grid.ColumnSpan="3" 
+                       Text="{Binding WeightMeter,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="14" x:Name="txtInnerPerimeter" Grid.ColumnSpan="3" 
+                       Text="{Binding InnerPerimeter ,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="15" x:Name="txtOuterPerimeter" Grid.ColumnSpan="3" 
+                       Text="{Binding OuterPerimeter ,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="16" x:Name="txtGeneralPerimeter" Grid.ColumnSpan="3" 
+                       Text="{Binding GeneralPerimeter ,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}" IsEnabled="False" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="17" x:Name="txtAreaAnod" Grid.ColumnSpan="3" 
+                       Text="{Binding Profile.AreaAnod ,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}" Margin="3"/>
+
+
+                    <!--<ListBox Grid.Column="3" Grid.Row="9" Grid.RowSpan="3" x:Name="txtListCommercial"
+                       ItemsSource="{Binding TypeAnod ,UpdateSourceTrigger=PropertyChanged}" Background="Transparent"
+                             BorderBrush="{StaticResource titleColor1}" Margin="3"/>-->
+                    <Button Grid.Column="3" Grid.Row="18"  x:Name="btnSave"  Grid.ColumnSpan="3" 
+                            Command="{Binding SaveInsertCommand}"
+                            Content="SAVE DATA" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+                    <Button Grid.Column="3" Grid.Row="19"  x:Name="btnPrint" Grid.ColumnSpan="3" 
+                            Command="{Binding PrintImageCommand}"
+                            Content="PRINT IMAGE" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+                    <Button Grid.Column="0" Grid.Row="18"  x:Name="btnOpenImage" 
+                            Command="{Binding OpenImageCommand}"
+                            Content="Add ProfileDrawing" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+                    <Button Grid.Column="0" Grid.Row="19"  x:Name="btnDeleteImage" 
+                            Command="{Binding DeleteImageCommand}"
+                            Content="Delete ProfileDrawing" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="18"  x:Name="btnOpenImagePalet" 
+                            Command="{Binding OpenImagePalletCommand}"
+                            Content="Add PalletDrawing" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+                    <Button Grid.Column="1" Grid.Row="19"  x:Name="btnDeleteImagePalet" 
+                            Command="{Binding DeleteImagePalletCommand}"
+                            Content="Delete PalletDrawing" 
+                            Style="{StaticResource controlButtonGray}">
+                    </Button>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

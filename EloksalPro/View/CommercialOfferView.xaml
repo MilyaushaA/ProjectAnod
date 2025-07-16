@@ -1,0 +1,231 @@
+﻿<Window x:Class="EloksalPro.View.CommercialOfferView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EloksalPro.View"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="CommercialOfferView"  Width="1200" Height="800">
+    <Window.DataContext>
+        <viewModel:CommercialOfferViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"    
+			BorderThickness="3"
+			Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="0"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+					Grid.Row="0"
+					Orientation="Horizontal"
+					FlowDirection="RightToLeft"
+					Background="Transparent"
+					MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+					MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose" Style="{StaticResource controlButton}" 
+                            Command="{Binding CloseOfferCommand}"
+                            Tag="{StaticResource color4}" Click="btnClose_Click" HorizontalAlignment="Right" Width="20" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="btnMaximize_Click" HorizontalAlignment="Right" Width="20">
+                        <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="20" Style="{StaticResource controlButton}" Tag="{StaticResource color8}" Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="210"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="Клиент:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="Номер предложения:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3"  Text="Дата предложения:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4"  Text="Наименование профиля:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5"  Text="Вид покрытие:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6"  Text="Цвет покрытия:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7"  Text="Толщина покрытия:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0"  Text="Торцовка:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1"  Text="Распил:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2"  Text="Нанесение защитной пленки:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3"  Text="Стрейч-пленка:" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="4" Text="Вес (г/м):" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="5" Text="Внешний периметр (мм):" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="6" Text="Цена анодирования, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="7" Text="Цена анодирования, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Цена др. обработки, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="Цена дробеструя, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="Цена обрезки к.п, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="3" Text="Цена обрезки к.п, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="4" Text="Цена распила, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="5" Text="Цена распила, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="6" Text="Цена наклейка з.п, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="7" Text="Цена наклейка з.п, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="8" Text="Цена стрейч-пленка, руб/М²" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="9" Text="Цена стрейч-пленка, руб/кг" Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11"  Text="Список профилей:" Style="{StaticResource controlTextBlock}"/>
+
+                    <ComboBox Grid.Column="1" Grid.Row="0" x:Name="txtClient" Margin="3" ItemsSource="{Binding ClientNameList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ClientNameSource, Mode=TwoWay}" IsEditable="True" StaysOpenOnEdit="True" />
+                    <TextBox Grid.Column="1" Grid.Row="1"  x:Name="txtClientText" Text="{Binding NameClient, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" Margin="3"/>
+
+                    <TextBox Grid.Column="1" Grid.Row="2"  x:Name="txtNumberOffer" Text="{Binding NumberOffer, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" Margin="3"/>
+                    <DatePicker Grid.Column="1" Grid.Row="3" x:Name="txtDateOffer" SelectedDate="{Binding Offer.DateOffer}" DisplayDate="{Binding DateTime.Now}" Margin="3"  BorderBrush="#E0E1F1"  />
+                    <TextBox Grid.Column="1" Grid.Row="4"  x:Name="txtNumberProfile" Text="{Binding Offer.EloksalNoCommercial, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" Margin="3"/>
+                    <ComboBox Grid.Column="1" Grid.Row="5" x:Name="txtTypeAnod" ItemsSource="{Binding TypeAnodList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding TypeAnodSource, Mode=TwoWay}"  Margin="3"/>
+                    <ComboBox Grid.Column="1" Grid.Row="6" x:Name="txtColorAnod" ItemsSource="{Binding ColorAnodList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ColorAnodSource, Mode=TwoWay}"  Margin="3"/>
+                    <ComboBox Grid.Column="1" Grid.Row="7" x:Name="txtThicknessCoating" ItemsSource="{Binding ThicknessCoatingList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ThicknessCoatingSource, Mode=TwoWay}"  Margin="3"/>
+                    <CheckBox Grid.Column="3" Grid.Row="0" x:Name="txtTrimming" IsChecked="{Binding Trimming, UpdateSourceTrigger=PropertyChanged}" Margin="3" />
+                    <CheckBox Grid.Column="3" Grid.Row="1" x:Name="txtSawed" IsChecked="{Binding Sawed, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+                    <CheckBox Grid.Column="3" Grid.Row="2" x:Name="txtTapeProtective"  IsChecked="{Binding TapeProtective, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+                    <CheckBox Grid.Column="3" Grid.Row="3" x:Name="txtStretch"  IsChecked="{Binding Stretch, UpdateSourceTrigger=PropertyChanged}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="4" x:Name="txtWeightMeter" Text="{Binding WeightProfile,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}"
+                       Style="{StaticResource controlText}"  Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="5" x:Name="txtOuterPerimeter" Text="{Binding OuterPerimeter ,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\}, ValidatesOnNotifyDataErrors=True}" Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="6" x:Name="txtPriceProfileArea" Text="{Binding PriceAnodArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="3" Grid.Row="7" x:Name="txtPriceProfile" Text="{Binding PriceAnodKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+
+                    <TextBox Grid.Column="5" Grid.Row="0" x:Name="txtPriceShotArea" Text="{Binding PriceShotArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="5" Grid.Row="1" x:Name="txtPriceShotKg" Text="{Binding PriceShotKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+                    <TextBox Grid.Column="5" Grid.Row="2" x:Name="txtPriceTrimArea" Text="{Binding PriceTrimArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="5" Grid.Row="3" x:Name="txtPriceTrimKg" Text="{Binding PriceTrimKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+                    <TextBox Grid.Column="5" Grid.Row="4" x:Name="txtPriceSawedArea" Text="{Binding PriceSawedArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="5" Grid.Row="5" x:Name="txtPriceSawedKg" Text="{Binding PriceSawedKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+
+                    <TextBox Grid.Column="5" Grid.Row="6" x:Name="txtPriceProtectiveArea" Text="{Binding PriceProtectiveArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="5" Grid.Row="7" x:Name="txtPriceProtectiveKg" Text="{Binding PriceProtectiveKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+                    <TextBox Grid.Column="5" Grid.Row="8" x:Name="txtPriceStretchArea" Text="{Binding PriceStretchArea,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3"/>
+                    <TextBox Grid.Column="5" Grid.Row="9" x:Name="txtPriceStretchKg" Text="{Binding PriceStretchKg,UpdateSourceTrigger=PropertyChanged,ConverterCulture=de-DE,StringFormat=\{0:f2\},ValidatesOnNotifyDataErrors=True}"  Style="{StaticResource controlText}" Margin="3" IsEnabled="false"/>
+
+
+
+                    <TextBox Grid.Column="0" Grid.Row="7"  x:Name="txtId" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" Visibility="Hidden" />
+                    <TextBox Grid.Column="1" Grid.Row="8"  x:Name="txtIdOffer" Text="{Binding IdOffer, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" Visibility="Hidden"/>
+
+                    <Button Grid.Column="4" Grid.Row="10" Grid.ColumnSpan="2" x:Name="btnSave" Command="{Binding CalculateAndInsertDataCommand}" Content="ADD DATA" Style="{StaticResource controlButtonGray}"  />
+                  
+                    <dxg:GridControl  Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="6" x:Name="gridControl" EnableSmartColumnsGeneration="True" ItemsSource="{Binding AllCommercialOffer}" Margin="5" >
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Сохранить данные" Command="{Binding SaveInsertCommand}" />
+                                <MenuItem Header="Печать коммерческого предложения" Command="{Binding PrintOfferCommand}"/>
+                                <MenuItem Header="Удалить выделенную строку" Click="DeleteClick"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.Bands>
+                            <dxg:GridControlBand Header="Band1" OverlayHeaderByChildren="True">
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="RowNumber" Header="№" UnboundExpression="" UnboundType="Integer" Width="35" AllowEditing="True" />
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Наи-ние профиля заказчика" Width="175" AllowEditing="True" />
+                                <dxg:GridColumn FieldName="CoverageGeneralInformation" Header="Покрытие" Width="125" AllowEditing="True"/>
+                                <dxg:GridColumn FieldName="ThicknessCoating" Header="Толщина,МКМ" Width="120" AllowEditing="True"/>
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес, г/м" Width="70" AllowEditing="True" />
+                                <dxg:GridColumn FieldName="OuterPerimeter" Header="Периметр, мм" Width="70" AllowEditing="True" />
+                                <dxg:GridColumn FieldName="PriceAnodArea" Header="Цена за анод, руб/М² (с НДС)" Width="120" />
+                                <dxg:GridColumn FieldName="CalculatePriceAnodKg" Header="Цена за анод, руб/кг (с НДС)" Width="120" AllowEditing="True" />
+                                <dxg:GridColumn FieldName="PriceShotArea" Header="Цена д.о, руб/М² (с НДС)" Width="120" />
+                                <dxg:GridColumn FieldName="CalculatePriceShotKg" Header="Цена д.о, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceTrimArea" Header="Цена обрезки к.п, руб/М² (с НДС)" Width="120"  />
+                                <dxg:GridColumn FieldName="CalculatePriceTrimKg" Header="Цена обрезки к.п, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceSawedArea" Header="Цена распила, руб/М² (с НДС)" Width="120" />
+                                <dxg:GridColumn FieldName="CalculatePriceSawedKg" Header="Цена распила, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceProtectiveArea" Header="Цена наклейки з.п, руб/М² (с НДС)" Width="120" />
+                                <dxg:GridColumn FieldName="CalculatePriceProtectiveKg" Header="Цена наклейки з.п, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceStretchArea" Header="Цена стрейч-пленка, руб/М² (с НДС)" Width="120" />
+                                <dxg:GridColumn FieldName="CalculatePriceStretchKg" Header="Цена стрейч-пленка, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceAreaSum" Header="Общая цена, руб/М² (с НДС)" Width="120" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="PriceKgSum" Header="Общая цена, руб/кг (с НДС)" Width="120" AllowEditing="False" />
+                            </dxg:GridControlBand>
+                        </dxg:GridControl.Bands>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableView" ShowTotalSummary="True" FontSize="12" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="False" Expression="[Column1] &lt;&gt; 0" FieldName="AmountPieceMustBe">
+                                        <dx:Format Icon="{dx:IconSet Name=Flags3_3}"/>
+                                    </dxg:FormatCondition>
+                                    <dxg:FormatCondition ApplyToRow="False" Expression="[Column2] &lt;&gt; 0" FieldName="LenghtProfileMustBe">
+                                        <dx:Format Icon="{dx:IconSet Name=Flags3_3}" TextDecorations="{x:Null}"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                    <!--<Button Grid.Column="4" Grid.Row="11" Grid.ColumnSpan="2" x:Name="btnSaveAllDataSpecification" 
+						Command="{Binding SaveInsertCommand}"
+						Content="SAVE DATA" 
+						Style="{StaticResource controlButtonGray}"/>
+                    <Button Grid.Column="4" Grid.Row="12"  Grid.ColumnSpan="2"  x:Name="btnPrint" 
+						Command="{Binding PrintOfferCommand}"
+						Content="PRINT OFFER" 
+						Style="{StaticResource controlButtonGray}" />
+                    <Button Grid.Column="4" Grid.Row="13" Grid.ColumnSpan="2"  x:Name="btnDelete" 
+						Click="DeleteClick"
+						Content="DELETE PROFILE" 
+						Style="{StaticResource controlButtonGray}" />-->
+                 </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

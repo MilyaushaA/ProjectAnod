@@ -1,0 +1,538 @@
+﻿<Window x:Class="EloksalPro.View.LaboratoryAnalysisView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EloksalPro.View"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+        xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+        xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
+        xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/charts/rangecontrolclient" 
+        mc:Ignorable="d"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        Title="Лабораторные анализы"  Width="1400" Height="600" >
+    <Window.DataContext>
+        <viewModel:LaboratoryAnalysisViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"    
+			BorderThickness="5"
+			Opacity="0.94">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="-0.7"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1.2"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+					Grid.Row="0"
+					Orientation="Horizontal"
+					FlowDirection="RightToLeft"
+					Background="Transparent"
+					MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+					MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+						Style="{StaticResource controlButton}"
+						Tag="{StaticResource color4}" 
+						Click="btnClose_Click" HorizontalAlignment="Right" Width="25" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMaximize" Width="25"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                                Click="btnMaximize_Click">
+                        <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="25"
+						Style="{StaticResource controlButton}" 
+						Tag="{StaticResource color8}"
+						Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1" Margin="0,0,5,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="65"/>
+                        <ColumnDefinition Width="55"/>
+                        <ColumnDefinition Width="85"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="75"/>
+                        <ColumnDefinition Width="70"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="90"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="Номер анализа:" FontSize="11"
+						Style="{StaticResource controlTextBlock}"  />
+                 
+                    <TextBlock Grid.Column="4" Grid.Row="0"  Text="Время:" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1"  Text="№ ванны, наименование" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1"  Text="Параметр" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1"  Text="Норма" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1"  Text="Анализ" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1"  Text="Корректировка" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="1 Обезжирование CMA 172:" FontSize="10"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="2"  Text="T,C" FontSize="10"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="3"  Text="CMA 172" FontSize="10"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="2"  Text="50-60-65" FontSize="10"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="3"  Text="4-8" FontSize="10"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="0" Grid.Row="4"  Text="3 Щелочное травление E-0 STRIP 230:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="5"  Text="NaOH, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="6"  Text="Al, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="7"  Text="STRIP 230" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="4"  Text="50-55" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="5"  Text="50-70" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="6"  Text="&lt;70" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="7"  Text="5-7-10" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="8"  Text="4 Щелочное травление E-6 CMA 292:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="1" Grid.Row="8"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="9"  Text="NaOH, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="10"  Text="Al, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="11"  Text="CMA 292" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="8"  Text="60-55" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="9"  Text="70-80" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="10"  Text="&gt;100" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="11"  Text="35-45-55" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="12"  Text="5 Горячее полоскание:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="12"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="12"  Text="40-45" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="0" Grid.Row="13"  Text="8 Нейтрализация DEOX 400:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="13"  Text="H2SO4, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="14"  Text="DEOX 400, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="2" Grid.Row="13"  Text="150-200" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="14"  Text="3-5" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="0" Grid.Row="15"  Text="9 Анодирование:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="15"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="16"  Text="H2SO4, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="1" Grid.Row="17"  Text="Al, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="15"  Text="16-18-20" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="16"  Text="180-200" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="2" Grid.Row="17"  Text="&lt;15" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="6" Grid.Row="1"  Text="№ ванны, наименование" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="7" Grid.Row="1"  Text="Параметр" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="8" Grid.Row="1"  Text="Норма" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="9" Grid.Row="1"  Text="Анализ" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="10" Grid.Row="1"  Text="Корректировка" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+
+                    <TextBlock Grid.Column="12" Grid.Row="1"  Text="№ ванны, наименование" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="13" Grid.Row="1"  Text="Параметр" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="14" Grid.Row="1"  Text="Норма" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="15" Grid.Row="1"  Text="Анализ" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="16" Grid.Row="1"  Text="Корректировка" FontSize="11"
+						Style="{StaticResource controlTextBlock}"/>
+
+                    <TextBlock Grid.Column="6" Grid.Row="2"  Text="10 Анодирование:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="2"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="3"  Text="H2SO4, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="4"  Text="Al, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="8" Grid.Row="2"  Text="16-18-20" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="3"  Text="180-200" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="4"  Text="&lt;15" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="6" Grid.Row="5"  Text="11 Анодирование:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="5"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="6"  Text="H2SO4, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="7"  Text="Al, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="8" Grid.Row="5"  Text="16-18-20" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="6"  Text="180-200" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="7"  Text="&lt;15" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="6" Grid.Row="8"  Text="14 Промывка:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="8"  Text="pH" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="8"  Text="6,0-8,0" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+
+                    <TextBlock Grid.Column="6" Grid.Row="9"  Text="15 Электроокрашивание COLOUR T2&amp;S2:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="7" Grid.Row="9"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="10"  Text="H2SO4, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="11"  Text="COLOUR T2" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="12"  Text="COLOUR S2" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="9"  Text="18-23-25" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="10"  Text="16-18-20" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="11"  Text="70-80-90" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="12"  Text="30-40-50" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="6" Grid.Row="13"  Text="16 Промывка:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="13"  Text="ph" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="13"  Text="2,0-3,0" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="6" Grid.Row="14"  Text="17 Деми-промывка:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="14"  Text="microS/см" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="14"  Text="&lt;100" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="6" Grid.Row="15"  Text="18 Холодное уплотнение SEAL 904&amp;F904:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="7" Grid.Row="15"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="16"  Text="pH" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="17"  Text="Nikel, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="7" Grid.Row="18"  Text="Fluoride, мг/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}"  TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="7" Grid.Row="19"  Text="Уплотнитель" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="15"  Text="25-30" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="16"  Text="6-6,4-6,8" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="17"  Text="1-2" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="8" Grid.Row="18"  Text="300-900" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="12" Grid.Row="2"  Text="19 Промывка:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="2"  Text="ph" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="2"  Text="5,0-8,0" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="12" Grid.Row="3"  Text="20 Холодное уплотнение SEAL 904&amp;F904:" FontSize="11"
+						Style="{StaticResource controlTextBlock}" TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="13" Grid.Row="3"  Text="T,C" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="4"  Text="pH" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="5"  Text="Nikel, г/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="6"  Text="Fluoride, мг/л" FontSize="11"
+						Style="{StaticResource controlTextBlock}"  TextWrapping="Wrap"/>
+                    <TextBlock Grid.Column="13" Grid.Row="7"  Text="Уплотнитель" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="3"  Text="25-30" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="4"  Text="6-6,4-6,8" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="5"  Text="1-2" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="6"  Text="300-900" FontSize="11"
+						Style="{StaticResource controlTextBlock}"  />
+
+                    <TextBlock Grid.Column="12" Grid.Row="8"  Text="21 Горячее полоскание " FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="8"  Text="pH microS/см " FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="12" Grid.Row="9"  Text="22 Горячее полоскание " FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="9"  Text="pH microS/см" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="12" Grid.Row="10"  Text="23 Горячее полоскание " FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="10"  Text="pH microS/см" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="12" Grid.Row="11"  Text="Результат обработки " FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="13" Grid.Row="11"  Text="Тест капли" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="14" Grid.Row="11"  Text="0-1-2-3-4-5" FontSize="11"
+						Style="{StaticResource controlTextBlock}" />
+                    <TextBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" IsEnabled="False" Name="txtNumber"
+						Text="{Binding LaboratoryAnalysis.NumberAnalysis, UpdateSourceTrigger=PropertyChanged}"
+						Style="{StaticResource controlText}"/>
+                    <dxe:DateEdit Name="txtDateLaboratoryAnalysis"  Grid.Column="6" Grid.Row="0"  Mask="g"  EditValue="{Binding LaboratoryAnalysis.DateLaboratoryAnalysis}"   Margin="1"  >
+                    </dxe:DateEdit>
+                    <TextBox Grid.Column="3" Grid.Row="2" Name="txtOneDegreasingTemp" Text="{Binding LaboratoryAnalysis.OneDegreasingTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="2" Name="txtOneDegreasingTempCorrect"  Text="{Binding LaboratoryAnalysis.OneDegreasingTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="3" Name="txtOneDegreasingCMA"  Text="{Binding LaboratoryAnalysis.OneDegreasingCMA, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="3" Name="txtOneDegreasingCMACorrect"  Text="{Binding LaboratoryAnalysis.OneDegreasingCMACorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="4" Name="txtThreeAlkalineTemp"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineTemp , UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="4" Name="txtThreeAlkalineTempCorrect"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="5" Name="txtThreeAlkalineNaOH"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineNaOH, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="5" Name="txtThreeAlkalineNaOHCorrect"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineNaOHCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="6" Name="txtThreeAlkalineAl"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineAl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="6" Name="txtThreeAlkalineAlCorrect"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineAlCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="7" Name="txtThreeAlkalineStrip"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineStrip, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="7" Name="txtThreeAlkalineStripCorrect"  Text="{Binding LaboratoryAnalysis.ThreeAlkalineStripCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="8" Name="txtFourAlkalineTemp"  Text="{Binding LaboratoryAnalysis.FourAlkalineTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="8" Name="txtFourAlkalineTempCorrect"  Text="{Binding LaboratoryAnalysis.FourAlkalineTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="9" Name="txtFourAlkalineNaOH"  Text="{Binding LaboratoryAnalysis.FourAlkalineNaOH, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="9" Name="txtFourAlkalineNaOHCorrect"  Text="{Binding LaboratoryAnalysis.FourAlkalineNaOHCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="10" Name="txtFourAlkalineAl"   Text="{Binding LaboratoryAnalysis.FourAlkalineAl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="10" Name="txtFourAlkalineAlCorrect"  Text="{Binding LaboratoryAnalysis.FourAlkalineAlCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="11" Name="txtFourAlkalineCMA"   Text="{Binding LaboratoryAnalysis.FourAlkalineCMA, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="11" Name="txtFourAlkalineCMACorrect"   Text="{Binding LaboratoryAnalysis.FourAlkalineCMACorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="12" Name="txtFiveHotRinsingTemp"   Text="{Binding LaboratoryAnalysis.FiveHotRinsingTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="12" Name="txtFiveHotRinsingTempCorrect"   Text="{Binding LaboratoryAnalysis.FiveHotRinsingTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="13" Name="txtEightNeutralizationHSO"   Text="{Binding LaboratoryAnalysis.EightNeutralizationHSO, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="13" Name="txtEightNeutralizationHSOCorrect"   Text="{Binding LaboratoryAnalysis.EightNeutralizationHSOCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="14" Name="txtEightNeutralizationDeox"   Text="{Binding LaboratoryAnalysis.EightNeutralizationDeox, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="14" Name="txtEightNeutralizationDeoxCorrect"   Text="{Binding LaboratoryAnalysis.EightNeutralizationDeoxCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="3" Grid.Row="15" Name="txtNineAnodizingTemp"  Text="{Binding LaboratoryAnalysis.NineAnodizingTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="15" Name="txtNineAnodizingTempCorrect"  Text="{Binding LaboratoryAnalysis.NineAnodizingTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="16" Name="txtNineAnodizingHSO"  Text="{Binding LaboratoryAnalysis.NineAnodizingHSO, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="16" Name="txtNineAnodizingHSOCorrect"  Text="{Binding LaboratoryAnalysis.NineAnodizingHSOCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="3" Grid.Row="17" Name="txtNineAnodizingAl"  Text="{Binding LaboratoryAnalysis.NineAnodizingAl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="4" Grid.Row="17" Name="txtNineAnodizingAlCorrect"  Text="{Binding LaboratoryAnalysis.NineAnodizingAlCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="2" Name="txtTenAnodizingTemp"  Text="{Binding LaboratoryAnalysis.TenAnodizingTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="2" Name="txtTenAnodizingTempCorrect"  Text="{Binding LaboratoryAnalysis.TenAnodizingTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="3" Name="txtTenAnodizingHSO"  Text="{Binding LaboratoryAnalysis.TenAnodizingHSO, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="3" Name="txtTenAnodizingHSOCorrect"  Text="{Binding LaboratoryAnalysis.TenAnodizingHSOCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="4" Name="txtTenAnodizingAl"  Text="{Binding LaboratoryAnalysis.TenAnodizingAl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="4" Name="txtTenAnodizingAlCorrect"  Text="{Binding LaboratoryAnalysis.TenAnodizingAlCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="5" Name="txtElevenAnodizingTemp"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="5" Name="txtElevenAnodizingTempCorrect"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="6" Name="txtElevenAnodizingHSO"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingHSO, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="6" Name="txtElevenAnodizingHSOCorrect"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingHSOCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="7" Name="txtElevenAnodizingAl"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingAl, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="7" Name="txtElevenAnodizingAlCorrect"  Text="{Binding LaboratoryAnalysis.ElevenAnodizingAlCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="8" Name="txtFourteenFlushing"  Text="{Binding LaboratoryAnalysis.FourteenFlushing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="8" Name="txtFourteenFlushingCorrect"  Text="{Binding LaboratoryAnalysis.FourteenFlushingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="9" Name="txtFifteenElectroTemp"  Text="{Binding LaboratoryAnalysis.FifteenElectroTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="9" Name="txtFifteenElectroTempCorrect"  Text="{Binding LaboratoryAnalysis.FifteenElectroTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="10" Name="txtFifteenElectroHSO"  Text="{Binding LaboratoryAnalysis.FifteenElectroHSO, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="10" Name="txtFifteenElectroHSOCorrect"  Text="{Binding LaboratoryAnalysis.FifteenElectroHSOCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="11" Name="txtFifteenElectroColourT"  Text="{Binding LaboratoryAnalysis.FifteenElectroColourT, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="11" Name="txtFifteenElectroColourTCorrect"  Text="{Binding LaboratoryAnalysis.FifteenElectroColourTCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="12" Name="txtFifteenElectroColourS"  Text="{Binding LaboratoryAnalysis.FifteenElectroColourS, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="12" Name="txtFifteenElectroColourSCorrect"  Text="{Binding LaboratoryAnalysis.FifteenElectroColourSCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="13" Name="txtSixteenFlushing"  Text="{Binding LaboratoryAnalysis.SixteenFlushing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="13" Name="txtSixteenFlushingCorrect"  Text="{Binding LaboratoryAnalysis.SixteenFlushingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="14" Name="txtSeventeenDemoFlushing"  Text="{Binding LaboratoryAnalysis.SeventeenDemoFlushing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="14" Name="txtSeventeenDemoFlushingCorrect"  Text="{Binding LaboratoryAnalysis.SeventeenDemoFlushingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="9" Grid.Row="15" Name="txtEighteenColdSealTemp"  Text="{Binding LaboratoryAnalysis.EighteenColdSealTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="15" Name="txtEighteenColdSealTempCorrect"  Text="{Binding LaboratoryAnalysis.EighteenColdSealTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="16" Name="txtEighteenColdSealPh"  Text="{Binding LaboratoryAnalysis.EighteenColdSealPh, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="16" Name="txtEighteenColdSealPhCorrect"   Text="{Binding LaboratoryAnalysis.EighteenColdSealPhCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="17" Name="txtEighteenColdSealNikel"  Text="{Binding LaboratoryAnalysis.EighteenColdSealNikel, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="17" Name="txtEighteenColdSealNikelCorrect"  Text="{Binding LaboratoryAnalysis.EighteenColdSealNikelCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="18" Name="txtEighteenColdSealFluoride"  Text="{Binding LaboratoryAnalysis.EighteenColdSealFluoride, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="18" Name="txtEighteenColdSealFluorideCorrect"  Text="{Binding LaboratoryAnalysis.EighteenColdSealFluorideCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="9" Grid.Row="19" Name="txtEighteenColdSeal"  Text="{Binding LaboratoryAnalysis.EighteenColdSeal, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="10" Grid.Row="19" Name="txtEighteenColdSealCorrect"  Text="{Binding LaboratoryAnalysis.EighteenColdSealCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="2" Name="txtNinteenFlushing"  Text="{Binding LaboratoryAnalysis.NinteenFlushing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="2" Name="txtNinteenFlushingCorrect"  Text="{Binding LaboratoryAnalysis.NinteenFlushingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="3" Name="txtTwentyColdSealTemp"  Text="{Binding LaboratoryAnalysis.TwentyColdSealTemp, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="3" Name="txtTwentyColdSealTempCorrect"  Text="{Binding LaboratoryAnalysis.TwentyColdSealTempCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="15" Grid.Row="4" Name="txtTwentyColdSealPh"  Text="{Binding LaboratoryAnalysis.TwentyColdSealPh, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="4" Name="txtTwentyColdSealPhCorrect"  Text="{Binding LaboratoryAnalysis.TwentyColdSealPhCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="15" Grid.Row="5" Name="txtTwentyColdSealNikel"  Text="{Binding LaboratoryAnalysis.TwentyColdSealNikel, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="5" Name="txtTwentyColdSealNikelCorrect"  Text="{Binding LaboratoryAnalysis.TwentyColdSealNikelCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="15" Grid.Row="6" Name="txtTwentyColdSealFluoride"  Text="{Binding LaboratoryAnalysis.TwentyColdSealFluoride, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="6" Name="txtTwentyColdSealFluorideCorrect"  Text="{Binding LaboratoryAnalysis.TwentyColdSealFluorideCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="15" Grid.Row="7" Name="txtTwentyColdSeal"  Text="{Binding LaboratoryAnalysis.TwentyColdSeal, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="7" Name="txtTwentyColdSealCorrect"   Text="{Binding LaboratoryAnalysis.TwentyColdSealCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="8" Name="txtTwentyOneHotRinsing"  Text="{Binding LaboratoryAnalysis.TwentyOneHotRinsing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="8" Name="txtTwentyOneHotRinsingCorrect"  Text="{Binding LaboratoryAnalysis.TwentyOneHotRinsingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="9" Name="txtTwentyTwoHotRinsing"  Text="{Binding LaboratoryAnalysis.TwentyTwoHotRinsing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="9" Name="txtTwentyTwoHotRinsingCorrect"  Text="{Binding LaboratoryAnalysis.TwentyTwoHotRinsingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="10" Name="txtTwentyThreeHotRinsing"  Text="{Binding LaboratoryAnalysis.TwentyThreeHotRinsing, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="10" Name="txtTwentyThreeHotRinsingCorrect"  Text="{Binding LaboratoryAnalysis.TwentyThreeHotRinsingCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+
+                    <TextBox Grid.Column="15" Grid.Row="11" Name="txtResult"  Text="{Binding LaboratoryAnalysis.Result, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <TextBox Grid.Column="16" Grid.Row="11" Name="txtResultCorrect"  Text="{Binding LaboratoryAnalysis.ResultCorrect, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource controlText}" />
+                    <Button Grid.Column="13" Grid.Row="20" Grid.ColumnSpan="4"  x:Name="btnSaveAnaliz" 
+                            Command="{Binding ShowSaveInsertCommand}"
+                            Content="SAVE DATA" 
+                            Style="{StaticResource controlButtonGray}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    </Button>
+
+                    <!--<dxg:GridControl  Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="7" x:Name="gridControl"  EnableSmartColumnsGeneration="True" ItemsSource="{Binding  AnodizingProcessProfileList}" Margin="5"  >
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Удалить строку" Command="{Binding ShowRemoveCommand}" />
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.TotalSummary>
+                            <dxg:GridSummaryItem FieldName="WeightGeneral" ShowInColumn="WeightGeneral" SummaryType="Sum"/>
+                            <dxg:GridSummaryItem FieldName="WeightGeneralDefect" ShowInColumn="WeightGeneralDefect" SummaryType="Sum"/>
+                        </dxg:GridControl.TotalSummary>
+
+                        <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                        <dxg:GridColumn FieldName="DateAnodizingProcess" Header="Дата" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="NumberBars" Header="Номер бары" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа" AllowEditing="False"  />
+                        <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура профиля" Width="200" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Номенклатура заказчика" Width="200" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="ClientName" Header="Наименование заказчика" Width="200" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="ColorAnod" Header="Цвет профиля" Width="130" AllowEditing="False"  />
+                        <dxg:GridColumn FieldName="WeightMeter" Header="Вес погонного метра, кг/м" Width="155" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="LenghtFact" Header="Длина хлыста, мм" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="AmountPieceFact" Header="Количество хлыстов, шт" Width="155" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="WeightGeneral" Header="Общий вес, кг" AllowEditing="False" Width="180"/>
+                        <dxg:GridColumn FieldName="AmountPieceDefect" Header="Количество хлыстов (брак), шт" Width="170" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="WeightGeneralDefect" Header="Общий вес брака, кг" AllowEditing="False" Width="180"/>
+                        <dxg:GridColumn FieldName="OuterPerimeter" Header="Внешний периметр, мм" Width="140" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь, м2" Width="130" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь брака, м2" Width="130" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="CurrentDensity" Header="Плотность тока, А/дм2" Width="160" AllowEditing="False"/>
+                        <dxg:GridColumn FieldName="Voltage" Header="Напряжение, В" Width="170" AllowEditing="False"  />
+                        <dxg:GridColumn FieldName="CurrentStreng" Header="Сила тока, А" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="AnodizingTime" Header="Время, мин" AllowEditing="False" />
+                        <dxg:GridColumn FieldName="BathTemperature" Header="°C" AllowEditing="False" />
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableView" ShowTotalSummary="True" FontSize="11" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>-->
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

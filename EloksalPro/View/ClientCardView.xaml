@@ -1,0 +1,157 @@
+﻿<Window x:Class="EloksalPro.View.ClientCardView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:local="clr-namespace:EloksalPro.View"
+        mc:Ignorable="d"
+        Title="ClientCardView" Height="850" Width="850"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+        <Window.DataContext>
+        <viewModel:ClientCardViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"                    
+            BorderThickness="3"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="-0.3"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}" 
+                                Click="btnClose_Click" HorizontalAlignment="Right" Width="20" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="20"
+                                Style="{StaticResource controlButton}" 
+                                Tag="{StaticResource color8}"
+                                Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <TextBlock Grid.Column="0"  Text="Данные заказчика"  Style="{StaticResource controlTextBlock}"  Margin="5" FontSize="18" /> 
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="Наименование заказчика:" 
+                      Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1"  Text="Номер договора:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="Дата договора:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3"  Text="Адрес заказчика:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4"  Text="Контактное лицо:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5"  Text="Контактный номер телефона:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6"  Text="Контактный номер телефона:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7"  Text="Почта:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8"  Text="Менеджер:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9"  Text="Номера профилей:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBox Grid.Column="0" Grid.Row="8"  x:Name="txtIdClient"
+                       Text="{Binding  IdClient,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}" Visibility="Hidden"/>
+                    <TextBox Grid.Column="1" Grid.Row="0"  x:Name="txtClientName"
+                       Text="{Binding  ClientCard.ClientName,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtClientNo"
+                       Text="{Binding  ClientCard.ContractNumber,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <DatePicker Grid.Column="1" Grid.Row="2"  x:Name="txtDateContract" SelectedDate="{Binding ClientCard.DateContract}" DisplayDate="{Binding DateTime.Now}" Margin="1"  BorderBrush="#E0E1F1"/>
+
+                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtPhysicalAddress"
+                       Text="{Binding ClientCard.PhysicalAddress ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="4" x:Name="txtContactPerson"
+                       Text="{Binding ClientCard.ContactPerson ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <!--<TextBox Grid.Column="1" Grid.Row="5" 
+                       Text="{Binding ClientCard.ContactNumberPhone ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>-->
+                    <xctk:MaskedTextBox Grid.Column="1" Grid.Row="5"  Mask="+7(999) 000-00-00" Name="txtPhoneNumber" Style="{StaticResource controlText}" Text="{Binding ClientCard.ContactNumberPhone,UpdateSourceTrigger=PropertyChanged}"/>
+                    <xctk:MaskedTextBox Grid.Column="1" Grid.Row="6" Mask="+7(999) 000-00-00"  Name="txtPhoneNumberAnother" Style="{StaticResource controlText}" Text="{Binding ClientCard.ContactNumberPhoneAnother,UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBox Grid.Column="1" Grid.Row="7" x:Name="txtEmail"
+                       Text="{Binding ClientCard.ContactEmail ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="8" x:Name="txtManager"
+                       Text="{Binding ClientCard.Manager,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="9" x:Name="txtItemAnod"
+                       Text="{Binding NoProfile ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <Button Grid.Column="1" Grid.Row="10"  x:Name="btnAddCommercialNo" 
+                            Command="{Binding  SaveInsertNewProfilaCommand}"
+                            Content="ADD ITEM PROFILE"
+                            Style="{StaticResource controlButtonGray}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    </Button>
+                    <ListBox Grid.Column="1" Grid.Row="11"  x:Name="txtListCommercial" 
+                       ItemsSource="{Binding ListCommercialNoProfile,UpdateSourceTrigger=PropertyChanged}" Background="Transparent"
+                             BorderBrush="{StaticResource titleColor1}" Margin="3"/>
+                    <Button Grid.Column="1" Grid.Row="15"  x:Name="btnSave" 
+                            Command="{Binding SaveInsertCommand }"
+                            Content="SAVE DATA"
+                            Style="{StaticResource controlButtonGray}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

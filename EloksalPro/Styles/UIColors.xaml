@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--Background Colors-->
+    <Color x:Key="primaryBackColor1">#FF6C0618</Color>
+    <Color x:Key="primaryBackColor2">#FF3C3B42</Color>
+    <Color x:Key="secondaryBackColor1">#FF6C0618</Color>
+    <Color x:Key="secondaryBackColor2">#FF3C3B42</Color>
+    <Color x:Key="secondaryBackColor3">#7376BD</Color>
+    <!--Window Border Colors-->
+    <Color x:Key="winBorderColor1">#E92541</Color>
+    <Color x:Key="winBorderColor2">#FF504957</Color>
+    <Color x:Key="winBorderColor3">#FF1B4968</Color>
+
+    <!--Color Palette-->
+    <SolidColorBrush x:Key="color1" Color="#E285DE"/>
+    <SolidColorBrush x:Key="color2" Color="#784DFD"/>
+    <SolidColorBrush x:Key="color3" Color="#808080"/>
+    <SolidColorBrush x:Key="color4" Color="#00008b"/>
+    <SolidColorBrush x:Key="color5" Color="#7E82FC"/>
+    <SolidColorBrush x:Key="color6" Color="#134e13"/>
+    <SolidColorBrush x:Key="color7" Color="#EF6C96"/>
+    <SolidColorBrush x:Key="color8" Color="#78A3FC"/>
+    <SolidColorBrush x:Key="color9" Color="#895900"/>
+    <SolidColorBrush x:Key="color10" Color="#d9d9d9"/>
+    <SolidColorBrush x:Key="color11" Color="#ff0014"/>
+    <SolidColorBrush x:Key="color12" Color="#cbcbe1"/>
+    <SolidColorBrush x:Key="color13" Color=" #FF2B1372"/>
+    <SolidColorBrush x:Key="color15" Color="#FF3C3B42"/>
+    <!--Font Colors-->
+    <SolidColorBrush x:Key="titleColor1" Color="#E0E1F1"/>
+    <SolidColorBrush x:Key="titleColor2" Color="#CDC5C2"/>
+    <SolidColorBrush x:Key="titleColor3" Color="#BCBEE0"/>
+    <SolidColorBrush x:Key="titleColor4" Color="#FF134389"/>
+    <SolidColorBrush x:Key="titleColor5" Color="#FF5F9739"/>
+    <SolidColorBrush x:Key="titleColor6" Color="#FFEBF1E7"/>
+    <SolidColorBrush x:Key="plainTextColor1" Color="#9497CD"/>
+    <SolidColorBrush x:Key="plainTextColor2" Color="#7C80C2"/>
+    <SolidColorBrush x:Key="plainTextColor3" Color="#cbcbe1"/>
+    <!--Panel Colors-->
+    <SolidColorBrush x:Key="panelColor" Color="#FF1B4968"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="#FF1B4968"/>
+    <SolidColorBrush x:Key="panelActiveColor" Color="#FF1B4968"/>
+
+</ResourceDictionary>

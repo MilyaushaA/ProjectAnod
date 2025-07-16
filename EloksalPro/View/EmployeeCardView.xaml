@@ -1,0 +1,137 @@
+﻿<Window x:Class="EloksalPro.View.EmployeeCardView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+        xmlns:local="clr-namespace:EloksalPro.View"
+        mc:Ignorable="d"
+        Title="EmployeeCardView" Height="400" Width="850"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:EmployeeViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="12">
+        <Border.Background>
+            <ImageBrush ImageSource="/Images/background.jpg"/>
+        </Border.Background>
+        <Border CornerRadius="10"                    
+            BorderThickness="3"
+            Opacity="0.95">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#FF1B4968" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                    <GradientStop Color="#FF6C0618" Offset="-0.3"/>
+                    <GradientStop Color="#FF3C3B42" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                    <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}" 
+                                Command="{Binding ShowCloseCardEmployeeCommand}"
+                                Click="btnClose_Click" HorizontalAlignment="Right" Width="20" >
+                        <fa:IconImage Icon="PowerOff" Style="{StaticResource controlButtonIcon}"  />
+                    </Button>
+                    <Button x:Name="btnMinimize"  Width="20"
+                                Style="{StaticResource controlButton}" 
+                                Tag="{StaticResource color8}"
+                                Click="btnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <TextBlock Grid.Column="0"  Text="Данные сотрудника."  Style="{StaticResource controlTextBlock}"  Margin="5" FontSize="18" />
+                </Grid>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0"  Text="ФИО:" 
+                      Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1"  Text="Логин:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2"  Text="Пароль:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3"  Text="Отдел:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4"  Text="Роль:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5"  Text="Контактный номер телефона:" 
+                       Style="{StaticResource controlTextBlock}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6"  Text="Почта:" 
+                       Style="{StaticResource controlTextBlock}" />
+                    <TextBlock Grid.Column="0" Grid.Row="7"  Text="Примечание:" 
+                       Style="{StaticResource controlTextBlock}" />
+                    
+                    <TextBox Grid.Column="0" Grid.Row="8"  x:Name="txtId"
+                       Text="{Binding  Id,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}" Visibility="Hidden"/>
+                    <TextBox Grid.Column="1" Grid.Row="0"  x:Name="txtName"
+                       Text="{Binding  UserModel.Name,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="1" x:Name="txtLogin"
+                       Text="{Binding  UserModel.Login,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="2" x:Name="txtPassword"
+                       Text="{Binding  UserModel.Password,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="3" x:Name="txtDepartment"
+                       Text="{Binding UserModel.Department ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="4" x:Name="txtRole"
+                       Text="{Binding UserModel.Role ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <xctk:MaskedTextBox Grid.Column="1" Grid.Row="5"  Mask="+7(999) 000-00-00" Name="txtPhoneNumber" Style="{StaticResource controlText}" Text="{Binding UserModel.PhoneNumber ,UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Column="1" Grid.Row="6" x:Name="txtEmail"
+                       Text="{Binding UserModel.Email ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <TextBox Grid.Column="1" Grid.Row="7" x:Name="txtAnnotation"
+                       Text="{Binding UserModel.Annotation ,UpdateSourceTrigger=PropertyChanged}"
+                       Style="{StaticResource controlText}"/>
+                    <Button Grid.Column="1" Grid.Row="8" Grid.RowSpan="2" x:Name="btnSave" 
+                            Command="{Binding  ShowSaveEmployeeCommand}"
+                            Content="SAVE DATA"
+                            Style="{StaticResource controlButtonGray}" HorizontalAlignment="Right" Margin="0,0,5,0">
+                    </Button>
+                </Grid>
+            </Grid>
+        </Border>
+    </Border>
+</Window>

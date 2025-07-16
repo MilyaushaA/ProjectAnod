@@ -1,0 +1,1112 @@
+﻿<UserControl x:Class="EloksalPro.View.ProductionProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:viewModel="clr-namespace:EloksalPro.ViewModels" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             mc:Ignorable="d" 
+             Background="Transparent">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="ControlTemplate1">
+            <Rectangle Stroke="#FF444444" StrokeThickness="1" StrokeDashArray="1 2" dx:BlendHelper2.ThemeInfo="Grid\Office2019Colorful\GridTable\GridControl\GridControlFocusedBorder.xaml;14;6" Uid="@Stroke=HoverForeground"/>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <viewModel:ProductionProfileViewModel/>
+    </UserControl.DataContext>
+    <TabControl x:Name="tabControl"  >
+        <TabItem Header="Дробеструйная обработка" >
+            <TabControl>
+                <TabItem Header="Отчет по сменам" >
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="315"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="534"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" x:Name="btnNewProfile"  Margin="10,10,0,10"
+						Command="{Binding ShowNewShotCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                            <TextBox  x:Name="txtId" Text="{Binding Id, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="3" Visibility="Hidden"/>
+                            <TextBlock Grid.Row="2" Text="Данные по дробеструйной обработке по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" Grid.ColumnSpan="3" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" x:Name="gridControlShotBlastingProfilesGenerals" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ShotBlastingProfilesGeneral}" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карточку дробеструйной обработки" Command="{Binding ShowShotCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding ShowRefreshGeneralCommand}"/>
+                                        <MenuItem Header="Сохранить данные" Command="{Binding  ShowSaveShotBlastingProfilesGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberShotGeneral" Header="Номер" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" />
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произведенного профиля, кг"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Площадь произведенного профиля, м2" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="GeneralQuantityDefectiveProfile" Header="Вес бракованного профиля, кг" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь бракованного профиля, м2" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Downtime" Header="Время простоя, мин"/>
+                                <dxg:GridColumn FieldName="Employee" Header="Сотрудник" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewShotBlastingProfilesGenerals" ShowTotalSummary="True" FontSize="12"  AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+                <TabItem  Header="Отчет по номенклатуре" >
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="315"/>
+                                <ColumnDefinition Width="110"/>
+                                <ColumnDefinition Width="534"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="2" Text="Данные по дробеструйной обработке по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" Grid.ColumnSpan="3" />
+                            <TextBox  x:Name="txtIdShotBlasting" Text="{Binding IdShotSummary, UpdateSourceTrigger=PropertyChanged}" Visibility="Hidden"  Grid.Row="0" Grid.Column="3" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" x:Name="gridControlShotBlasting" EnableSmartColumnsGeneration="True" ItemsSource="{Binding ShotBlastingProfileSummaryTable}"  >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Обновить данные" Command="{Binding ShowRefreshGeneralCommand}"/>
+                                        <MenuItem Header="Открыть смену" Command="{Binding ShowShotSummaryCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfile" ShowInColumn="QuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaProducedProfile" ShowInColumn="GeneralAreaProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityDefectiveProfile" ShowInColumn="QuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityDefectiveProfile" ShowInColumn="GeneralQuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaDefectiveProfile" ShowInColumn="GeneralAreaDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <!--<dxg:GridColumn FieldName="NumberShotGeneral" Header="Номер"  AllowEditing="False" Width="80"/>-->
+                                <dxg:GridColumn FieldName="Date" Header="Дата" Width="80"/>
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" Width="80"/>
+                                <dxg:GridColumn FieldName="ClientName" Header="Клиент"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа"  AllowEditing="False" Width="80"/>
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Коммерческий номер"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура профиля"  AllowEditing="False" Width="160"/>
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля"  AllowEditing="False" Width="60"/>
+                                <!--<dxg:GridColumn FieldName="WeightMeter" Header="Вес профиля"  AllowEditing="False" Width="60"/>-->
+                                <!--<dxg:GridColumn FieldName="OuterPerimeter" Header="Периметр профиля"  AllowEditing="False" Width="70"/>-->
+                                <dxg:GridColumn FieldName="QuantityProducedProfile" Header="Количество произведенного профиля, шт"  AllowEditing="False"/>
+                                <!--<dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произведенного профиля, кг"  AllowEditing="False"/>-->
+                                <!--<dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Площадь произведенного профиля, м2" AllowEditing="False" />-->
+                                <dxg:GridColumn FieldName="QuantityDefectiveProfile" Header="Количество отбракованного профиля, шт" AllowEditing="False"/>
+                                <!--<dxg:GridColumn FieldName="GeneralQuantityDefectiveProfile" Header="Вес отбракованного профиля, кг" AllowEditing="False"/>-->
+                                <!--<dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь отбракованного профиля, м2" AllowEditing="False" />-->
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewShotBlasting" ShowTotalSummary="True" FontSize="12"  AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <!--<TabItem Header="Навеска алюминиевого профиля" >
+            <Border>
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="500"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" x:Name="btnNewHitchAluminumProfile"  Margin="10"
+						Command="{Binding  ShowNewHitchAluminumProfileCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                    <TextBox  x:Name="txtIdHitchAluminumProfile" Text="{Binding IdHitch, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+                    <TextBlock Grid.Row="2" Text="Данные по навеске алюминиевого профиля по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                    <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlHitchAluminumProfile" EnableSmartColumnsGeneration="True" ItemsSource="{Binding HitchAluminumProfileGeneral}" Margin="5" >
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Открыть карточку навески" Command="{Binding ShowHitchAluminumProfileCommand}" />
+                                <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                        <dxg:GridColumn FieldName="NumberHitchGeneral" Header="Номер навески" />
+                        <dxg:GridColumn FieldName="Date" Header="Дата" />
+                        <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                        <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Общий вес навески"/>
+                        <dxg:GridColumn FieldName="GeneralQuantityDefectedProfile" Header="Общий вес бракованного профиля"/>
+                        <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Площадь бракованного профиля, кг" />
+                        <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь бракованного профиля, м2" />
+                        <dxg:GridColumn FieldName="Employee" Header="Сотрудник"/>
+                        <dxg:GridColumn FieldName="Annotation" Header="Примечание"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableViewHitchAluminumProfile" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid >
+            </Border>
+        </TabItem>-->
+        <TabItem Header="Процесс анодирования" >
+            <TabControl>
+                <TabItem Header="Отчет анодирования по сменам" >
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" Margin="10"
+						Command="{Binding ShowNewAnodizingProcessProfileCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                            <TextBox  x:Name="txtIdAnodizingProcessProfile" Text="{Binding IdAnod, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+                            <TextBlock Grid.Row="2" Text="Данные по процессу анодирования по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlAnodizingProcessProfile" EnableSmartColumnsGeneration="True" ItemsSource="{Binding AnodizingProcessProfileGeneral}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть анодирование" Command="{Binding  ShowAnodizingAluminumProfileCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                        <MenuItem Header="Сохранить данные" Command="{Binding  ShowSaveAnodizingProcessProfileGeneralCommand }"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberAnodizingProcess" Header="Номер анодирования" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" />
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Общий вес анодирования, кг" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь анодирования,м2" AllowEditing="False"  />
+                                <dxg:GridColumn FieldName="GeneralQuantityDefectedProfile" Header="Общий вес бракованного профиля, кг" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь бракованного профиля,м2" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Downtime" Header="Время простоя, мин"/>
+                                <dxg:GridColumn FieldName="Employee" Header="Сотрудник" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewAnodizingProcessProfile" ShowTotalSummary="True" FontSize="12" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+                <TabItem Header="Отчет анодирования по номенклатуре">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="2" Text="Данные по процессу анодирования по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <TextBox  x:Name="txtIdAnodSummary" Text="{Binding IdAnodSummary, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlAnodizingSummary" EnableSmartColumnsGeneration="True" ItemsSource="{Binding AnodizingProcessProfileSummaryTable}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowAnodizingAluminumProfileSummaryCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfile" ShowInColumn="QuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaProducedProfile" ShowInColumn="GeneralAreaProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityDefectiveProfile" ShowInColumn="QuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityDefectiveProfile" ShowInColumn="GeneralQuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaDefectiveProfile" ShowInColumn="GeneralAreaDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <!--<dxg:GridColumn FieldName="NumberAnodizingProcess" Header="Номер анодирования" Width="80" />-->
+                                <dxg:GridColumn FieldName="Date" Header="Дата" Width="80"/>
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" Width="80"/>
+                                <dxg:GridColumn FieldName="ClientName" Header="Клиент"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа"  AllowEditing="False" Width="80"/>
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Коммерческий номер"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура профиля"  AllowEditing="False" Width="160"/>
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля"  AllowEditing="False" Width="60"/>
+                                <!--<dxg:GridColumn FieldName="WeightMeter" Header="Вес профиля"  AllowEditing="False" Width="60"/>
+                                <dxg:GridColumn FieldName="OuterPerimeter" Header="Периметр профиля"  AllowEditing="False" Width="70"/>-->
+                                <dxg:GridColumn FieldName="QuantityProducedProfile" Header="Количество произведенного профиля, шт"  AllowEditing="False"/>
+                                <!--<dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произведенного профиля, кг"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Площадь произведенного профиля, м2" AllowEditing="False" />-->
+                                <dxg:GridColumn FieldName="QuantityDefectiveProfile" Header="Количество отбракованного профиля, шт" AllowEditing="False"/>
+                                <!--<dxg:GridColumn FieldName="GeneralQuantityDefectiveProfile" Header="Вес отбракованного профиля, кг" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь отбракованного профиля, м2" AllowEditing="False" />-->
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewAnodizing" ShowTotalSummary="True" FontSize="12" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Распил и торцовка профиля" >
+            <TabControl>
+                <TabItem Header="Отчет распил и торцовка профиля по сменам">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" Margin="10"
+						Command="{Binding ShowNewСuttingFacingProfileCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                            <TextBox  x:Name="txtIdСuttingFacingProfile" Text="{Binding IdCuttingFacing, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden" />
+                            <TextBlock Grid.Row="2" Text="Данные по распилу и торцовке профиля по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlСuttingFacingProfile" EnableSmartColumnsGeneration="True" ItemsSource="{Binding СuttingFacingGeneralProfile}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowСuttingFacingProfileCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberСuttingFacing" Header="Номер" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" />
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfileBefore" Header="Общий вес до распила, кг" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfileAfter" Header="Общий вес после распила, кг" />
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь после распила,м2" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfileDefect" Header="Общий вес бракованного профиля, кг" />
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь бракованного профиля, м2" />
+                                <dxg:GridColumn FieldName="GeneralWeightTechnologicalWaste" Header="Вес технологического отхода, кг" />
+                                <dxg:GridColumn FieldName="Employee" Header="Сотрудник"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание"/>
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewСuttingFacingProfile" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+                <TabItem Header="Отчет распил и торцовка профиля по номенклатуре">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBox  x:Name="txtIdСuttingFacingProfileSummary" Text="{Binding IdCuttingFacingSummary, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden" />
+                            <TextBlock Grid.Row="1" Text="Данные по распилу и торцовке профиля по номеру номенклатуры:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <dxg:GridControl  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlСuttingFacingProfileSummary" EnableSmartColumnsGeneration="True" ItemsSource="{Binding СuttingFacingProfileSummaryTable}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowСuttingFacingProfileSummaryCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfileBefore" ShowInColumn="QuantityProducedProfileBefore" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="WeightProducedProfileBefore" ShowInColumn="WeightProducedProfileBefore" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfileAfter" ShowInColumn="QuantityProducedProfileAfter" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="WeightProducedProfileAfter" ShowInColumn="WeightProducedProfileAfter" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityDefectedProfile" ShowInColumn="QuantityDefectedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="WeightDefectedProfile" ShowInColumn="WeightDefectedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberСuttingFacing" Header="Номер" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" Width="80"/>
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" Width="80" />
+                                <dxg:GridColumn FieldName="ClientName" Header="Клиент" />
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа" />
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Коммерческий номер" />
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура" />
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес п.м, кг/м" Width="70"/>
+                                <dxg:GridColumn FieldName="LenghtProfileBefore" Header="Длина хлыста до распила, мм" Width="70" />
+                                <dxg:GridColumn FieldName="QuantityProducedProfileBefore" Header="Кол-во хлыстов до распила, шт" Width="70" />
+                                <dxg:GridColumn FieldName="WeightProducedProfileBefore" Header="Общий вес до распила, кг" Width="70" />
+                                <dxg:GridColumn FieldName="LenghtProfileAfter" Header="Длина хлыста после распила, мм" Width="70"/>
+                                <dxg:GridColumn FieldName="QuantityProducedProfileAfter" Header="Кол-во хлыстов после распила, шт" Width="70"/>
+                                <dxg:GridColumn FieldName="WeightProducedProfileAfter" Header="Общий вес после распила, кг" Width="70" />
+                                <!--<dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь после распила,м2" />-->
+                                <dxg:GridColumn FieldName="QuantityDefectedProfile" Header="Кол-во профиля (брак), шт" Width="70"/>
+                                <dxg:GridColumn FieldName="WeightDefectedProfile" Header="Общий вес профиля (брак), кг" Width="70"/>
+                                <dxg:GridColumn FieldName="WeightTechnologicalWaste" Header="Вес тех-кого отхода, кг" Width="90"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание"/>
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewСuttingFacingProfileSummary" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Наклейка защитной пленки" >
+            <TabControl>
+                <TabItem Header="Отчет Наклеивание защитной пленки по сменам">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" Margin="10"
+						Command="{Binding  ShowNewTypeProtectiveProfileCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                            <TextBox  x:Name="txtIdTypeProtectiveProcessProfile" Text="{Binding IdTapeProtective, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+                            <TextBlock Grid.Row="2" Text="Данные по наклейке защитной пленки алюминиевого профиля по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlTypeProtectiveProcessProfile" EnableSmartColumnsGeneration="True" ItemsSource="{Binding TapeProtectiveProcessProfileGeneral}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowTapeProtectiveProfileCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaProducedProfile" ShowInColumn="GeneralAreaProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityDefectiveProfile" ShowInColumn="GeneralQuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaDefectiveProfile" ShowInColumn="GeneralAreaDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="ConsumptionProtectiveFilm" ShowInColumn="ConsumptionProtectiveFilm" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberTapeProtectiveProcess" Header="Номер" Width="80"/>
+                                <dxg:GridColumn FieldName="Date" Header="Дата" />
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Общий вес профиля, кг" />
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь, м2" />
+                                <dxg:GridColumn FieldName="GeneralQuantityDefectedProfile" Header="Общий вес бракованного профиля, кг " />
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь бракованного профиля,м2" />
+                                <dxg:GridColumn FieldName="ConsumptionProtectiveFilm" Header="Расход пленки,м2" />
+                                <dxg:GridColumn FieldName="Employee" Header="Сотрудник"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание"/>
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewTypeProtectiveProcessProfile" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+                <TabItem Header="Отчет Наклеивание защитной пленки по номенклатуре">
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Grid.Row="1" Text="Данные по наклейке защитной пленки алюминиевого профиля:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <TextBox  x:Name="txtIdTypeProtectiveSummary" Text="{Binding IdTapeProtectiveSummary, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden"/>
+                            <dxg:GridControl  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlTypeProtectiveSummary" EnableSmartColumnsGeneration="True" ItemsSource="{Binding TapeProtectiveProcessProfileSummaryTable}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowTapeProtectiveProfileSummaryCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfile" ShowInColumn="QuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaProducedProfile" ShowInColumn="GeneralAreaProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityDefectiveProfile" ShowInColumn="QuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityDefectiveProfile" ShowInColumn="GeneralQuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaDefectiveProfile" ShowInColumn="GeneralAreaDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityRunningMeter" ShowInColumn="QuantityRunningMeter" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="ConsumptionProtectiveFilm" ShowInColumn="ConsumptionProtectiveFilm" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberTapeProtectiveGeneral" Header="Номер" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" Width="80"/>
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" Width="80"/>
+                                <dxg:GridColumn FieldName="ClientName" Header="Клиент"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа"  AllowEditing="False" Width="80"/>
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Коммерческий номер"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура профиля"  AllowEditing="False" Width="160"/>
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля, мм"  AllowEditing="False" Width="70"/>
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес профиля, кг/м"  AllowEditing="False" Width="70"/>
+                                <dxg:GridColumn FieldName="OuterPerimeter" Header="Периметр профиля, мм"  AllowEditing="False" Width="70"/>
+                                <dxg:GridColumn FieldName="QuantityProducedProfile" Header="Кол-во произ. профиля, шт" Width="70" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произ. профиля, кг" Width="70" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Площадь произ. профиля, м2" Width="70" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="QuantityRunningMeter" Header="Кол-во пм, м" Width="70" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="QuantityDefectiveProfile" Header="Кол-во отбрак. профиля, шт" Width="70" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityDefectiveProfile" Header="Вес отбрак. профиля, кг" Width="70" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь отбрак. профиля, м2" Width="70" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="ConsumptionProtectiveFilm" Header="Расход защитной пленки, м2" Width="70" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewTypeProtectiveSummary" ShowTotalSummary="True" FontSize="12" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Упаковка профиля" >
+            <TabControl>
+                <TabItem Header="Отчет Упаковка профиля  по сменам" >
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.Column="0" Margin="10"
+						Command="{Binding ShowNewPackingProfileCommand}"
+						Content="Открыть смену" HorizontalAlignment="Left"  
+						Style="{StaticResource controlButtonLightGray}" />
+                            <TextBox  x:Name="txtIdPackingAluminumProfile" Text="{Binding IdPacking, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="1" Visibility="Hidden" />
+                            <TextBlock Grid.Row="2" Text="Данные по упаковке профиля по сменам:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" />
+                            <dxg:GridControl  Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlPackingAluminumProfile" EnableSmartColumnsGeneration="True" ItemsSource="{Binding PackingAluminumProfileGeneral}" Margin="5" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowPackingProfileCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberPackingAluminumProfile" Header="Номер" Width="80"/>
+                                <dxg:GridColumn FieldName="Date" Header="Дата" />
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" />
+                                <dxg:GridColumn FieldName="WeightProducedProfile" Header="Общий вес упаковки, кг" />
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Общая площадь упаковки, м2" />
+                                <dxg:GridColumn FieldName="WeightDefectedProfile" Header="Общий вес бракованного профиля, кг" />
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Общая площадь бракованного профиля, м2" />
+                                <dxg:GridColumn FieldName="Employee" Header="Сотрудник"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание"/>
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending"  GroupIndex="0"  >
+
+                                </dxg:GridColumn>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewPackingAluminumProfile" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+                <TabItem Header="Отчет Упаковка профиля  по номенклатуре" >
+                    <Border>
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                                <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                                <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="1024"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="10"/>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+                            <TextBox  x:Name="txtIdPackingAluminumProfileSummary" Text="{Binding IdPackingSummary, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
+                            <TextBox  x:Name="txtBasketSummary" Text="{Binding BasketNumber, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
+                            <TextBlock Grid.Row="1" Text="Данные по упаковке профиля:" FontSize="14" Margin="5" Background="Transparent" FontWeight="Medium" FontFamily="Montserrat" Foreground="White" Grid.ColumnSpan="2" />
+                            <dxg:GridControl  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="gridControlPackingAluminumProfileSummary" EnableSmartColumnsGeneration="True" ItemsSource="{Binding PackingAluminumProfileSummaryTable}" Margin="5" SelectionMode="Cell" KeyDown="TreeList_KeyDown_Packing" >
+                                <dxg:GridControl.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="Открыть карту" Command="{Binding ShowPackingProfileSummaryCommand}" />
+                                        <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                        <MenuItem Header="Печать этикетки" Command="{Binding  ShowPrintProfileCommand}"/>
+                                    </ContextMenu>
+                                </dxg:GridControl.ContextMenu>
+                                <dxg:GridControl.TotalSummary>
+                                    <dxg:GridSummaryItem FieldName="QuantityProducedProfile" ShowInColumn="QuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft" DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityProducedProfile" ShowInColumn="GeneralQuantityProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaProducedProfile" ShowInColumn="GeneralAreaProducedProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="QuantityDefectiveProfile" ShowInColumn="QuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralQuantityDefectiveProfile" ShowInColumn="GeneralQuantityDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                    <dxg:GridSummaryItem FieldName="GeneralAreaDefectiveProfile" ShowInColumn="GeneralAreaDefectiveProfile" SummaryType="Sum" FrameworkElement.FlowDirection="RightToLeft"  DisplayFormat="#,#.00"/>
+                                </dxg:GridControl.TotalSummary>
+                                <dxg:GridColumn FieldName="Id" Header="Id" Visible="False"/>
+                                <dxg:GridColumn FieldName="NumberPackingAluminumProfile" Header="Номер упаковки" Width="80" />
+                                <dxg:GridColumn FieldName="Date" Header="Дата" Width="80"/>
+                                <dxg:GridColumn FieldName="Shift" Header="Смена" Width="80"/>
+                                <dxg:GridColumn FieldName="BasketNumber" Header="Номер паллета" Width="80"/>
+                                <dxg:GridColumn FieldName="ClientName" Header="Клиент"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа"  AllowEditing="False" Width="80"/>
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Коммерческий номер"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номенклатура профиля"  AllowEditing="False" Width="160"/>
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля"  AllowEditing="False" Width="60"/>
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес профиля"  AllowEditing="False" Width="60"/>
+                                <dxg:GridColumn FieldName="QuantityProducedProfile" Header="Кол-во произ. профиля, шт"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityProducedProfile" Header="Вес произ. профиля, кг"  AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaProducedProfile" Header="Площадь произ. профиля, м2" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="QuantityDefectiveProfile" Header="Количество отбрак. профиля, шт" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralQuantityDefectiveProfile" Header="Вес отбрак. профиля, кг" AllowEditing="False"/>
+                                <dxg:GridColumn FieldName="GeneralAreaDefectiveProfile" Header="Площадь отбрак. профиля, м2" AllowEditing="False" />
+                                <dxg:GridColumn FieldName="Месяц" UnboundType="Integer" UnboundExpression="GetMonth([Date])" SortOrder="Ascending" GroupIndex="0"/>
+                                <dxg:GridColumn FieldName="Год" UnboundType="Integer" UnboundExpression="GetYear([Date])" SortOrder="Descending" GroupIndex="0"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="tableViewPackingAluminumProfileSummary" ShowTotalSummary="True" FontSize="12" AllowEditing="False" AutoWidth="True" NewItemRowPosition="Bottom" FontFamily="Times New Roman"  >
+                                        <dxg:TableView.ColumnHeaderTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                            </DataTemplate>
+                                        </dxg:TableView.ColumnHeaderTemplate>
+                                        <dxg:TableView.RowStyle>
+                                            <Style>
+                                                <Setter Property="TextElement.Foreground" Value="Black"/>
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </Grid >
+                    </Border>
+                </TabItem>
+            </TabControl>
+        </TabItem>
+        <TabItem Header="Производство, сводная"  >
+            <Border >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <TextBox  x:Name="txtProfile" Text="{Binding NomenclatureProfile, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
+
+                    <dxg:GridControl  Grid.Row="1"  x:Name="gridControlSummaryTableProfile"  Grid.Column="0"   EnableSmartColumnsGeneration="True" ItemsSource="{Binding SummaryTableProfile}" SelectionMode="Cell" KeyDown="TreeList_KeyDown" Margin="5" ClipboardCopyMode="ExcludeHeader" Grid.ColumnSpan="2">
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Открыть информацию о профиле" Command="{Binding ShowCardProfileCommand}" />
+                                <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                <MenuItem Header="Export" Click="ExcelGrid"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.Bands>
+                            <dxg:GridControlBand Header="Band1" OverlayHeaderByChildren="True" Fixed="Left">
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа" Width="50"  />
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номер профиля" Width="120" />
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Номер профиля клиента" Width="60" />
+                                <dxg:GridColumn FieldName="ClientName" Header="Наи-ние заказчика" Width="80"  />
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес п.м, кг/м" Width="40" />
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля, мм" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPieceFact" Header="Кол-во хл. Сырья, шт" Width="40" />
+                                <dxg:GridColumn FieldName="LenghtProfileFact" Header="Длина хлыста, мм" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPiece" Header="Кол-во Гот-го профиля, шт" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPackingAluminumProfile" Header="Кол-во Упаков. профиля, шт" Width="50" CellStyle="{StaticResource GreenLightColumnStyle}"/>
+                                <dxg:GridColumn FieldName="Column1" Header="Остаток на складе, шт" UnboundExpression="ToInt([AmountPackingAluminumProfile])-ToInt([AmountProfileConsumptionWarehouse])"
+                                                 UnboundType="Integer" Width="50" CellStyle="{StaticResource GreenLightColumnStyle}" />
+                                <dxg:GridColumn FieldName="Column3" Header="Общее кол-во брака, шт" Width="40" UnboundType="Integer" UnboundExpression="ToInt([AmountPieceShotBlastingProfileBrak]) + ToInt([AmountPieceAnodizingProcessProfileBrak]) + ToInt([AmountPiecePackingAluminumProfileBrak])
+                                                + ToInt([AmountPieceTapeProtectiveProcessProfileBrak]) + ToInt([AmountPieceСuttingFacingProfileBrak])" CellStyle="{StaticResource GreenLightColumnStyle}"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание" Width="50"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Склад сырья" HorizontalHeaderContentAlignment="Center"  >
+                                <dxg:GridColumn FieldName="DateReception" Header="Дата приема сырья" Width="55" CellStyle="{StaticResource BrownColumnStyle}"  />
+                                <!--<dxg:GridColumn FieldName="DateShipment" Header="Дата отгрузки сырья" Width="70" CellStyle="{StaticResource BrownColumnStyle}"  />-->
+                                <dxg:GridColumn FieldName="AmountPieceReceptionAccepted" Header="Кол-во хлыстов Сырья, шт" Width="50" CellStyle="{StaticResource BrownColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtReceptionAccepted" Header="Общая длина, м" Width="50" CellStyle="{StaticResource BrownColumnStyle}"   />
+                                <dxg:GridColumn FieldName="WeightReceptionAccepted" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource BrownColumnStyle}"  />
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Дробейструйная обработка профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceShotBlastingProfile" Header="Кол-во хлыстов, шт" Width="50" CellStyle="{StaticResource GreyColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtShotBlastingProfile" Header="Общая длина, м" Width="50" CellStyle="{StaticResource GreyColumnStyle }"  />
+                                <dxg:GridColumn FieldName="WeightShotBlastingProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource GreyColumnStyle }"  />
+                                <dxg:GridColumn FieldName="AmountPieceShotBlastingProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtShotBlastingProfileBrak" Header="Общая длина (брак), м"  Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightShotBlastingProfileBrak" Header="Общий вес (брак), кг"  Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                            </dxg:GridControlBand>
+                            <!--<dxg:GridControlBand Header="Навеска алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceHitchAluminumProfile" Header="Количество хлыстов , шт" Width="70"  CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtHitchAluminumProfile" Header="Общая длина, м" Width="60" CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightHitchAluminumProfile" Header="Общий вес, кг" Width="60" CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="AmountPieceHitchAluminumProfileBrak" Header="Количество хлыстов (брак), шт"  Width="70" CellStyle="{StaticResource BlueColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtHitchAluminumProfileBrak" Header="Общая длина (брак), м" Width="60"  CellStyle="{StaticResource BlueColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightHitchAluminumProfileBrak" Header="Общий вес(брак), кг"  Width="60" CellStyle="{StaticResource BlueColumnStyle }"/>
+                            </dxg:GridControlBand>-->
+                            <dxg:GridControlBand Header="Анодирование алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceAnodizingProcessProfile" Header="Кол-во хлыстов, шт" Width="50"  CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtAnodizingProcessProfile" Header="Общая длина, м" Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightAnodizingProcessProfile" Header="Общий вес, кг"  Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                                <dxg:GridColumn FieldName="AmountPieceAnodizingProcessProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtAnodizingProcessProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightAnodizingProcessProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Резка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountСuttingFacingProfile" Header="Кол-во хлыстов торцовка, шт" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtСuttingFacingProfile" Header="Общая длина, м" Width="40" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightСuttingFacingProfile" Header="Общий вес, кг"  Width="50" CellStyle="{StaticResource FioletColumnStyle }" />
+                                <dxg:GridColumn FieldName="AmountPieceСuttingFacingProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtСuttingFacingProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightСuttingFacingProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Нанесение защитной пленки" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountTapeProtectiveProcessProfile" Header="Кол-во хлыстов, шт" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtTapeProtectiveProcessProfile" Header="Общая длина м" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightTapeProtectiveProcessProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="AmountPieceTapeProtectiveProcessProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtTapeProtectiveProcessProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource RedColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightTapeProtectiveProcessProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                            </dxg:GridControlBand>
+                          
+                            <dxg:GridControlBand Header="Упаковка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPackingAluminumProfile" Header="Кол-во профиля, шт" Width="50" CellStyle="{StaticResource OrangeColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtPackingAluminumProfile" Header="Общая длина, м"  Width="40" CellStyle="{StaticResource OrangeColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightPackingAluminumProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="AmountPiecePackingAluminumProfileBrak" Header="Кол-во профиля (брак), шт" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="LenghtPackingAluminumProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="WeightPackingAluminumProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource OrangeColumnStyle}" />
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Отгрузка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountProfileConsumptionWarehouse" Header="Кол-во профиля, шт" Width="50" CellStyle="{StaticResource BlueColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtProfileConsumptionWarehouse" Header="Общая длина, м" Width="50" CellStyle="{StaticResource BlueColumnStyle}" />
+                                <dxg:GridColumn FieldName="WeightProfileConsumptionWarehouse" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource BlueColumnStyle}"   />
+                                <!--<dxg:GridColumn FieldName="AmountConsumptionWarehouseBrak" Header="Количество (брак), шт" Width="70" />
+                                <dxg:GridColumn FieldName="LenghtConsumptionWarehouseBrak" Header="Общая длина (брак), м" Width="60"  />
+                                <dxg:GridColumn FieldName="WeightConsumptionWarehouseBrak" Header="Общий вес (брак), кг"  Width="60" />-->
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Остаток профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="Column1" Header="Остаток на складе, шт" UnboundExpression="ToInt([AmountPackingAluminumProfile])-ToInt([AmountProfileConsumptionWarehouse])"
+                                                 UnboundType="Integer" Width="60" />
+                                <dxg:GridColumn FieldName="Column2" Header="Остаток на складе, кг" UnboundExpression="ToInt([Column1])*ToInt([LenghtProfile])*ToDouble([WeightMeter])/1000"
+                                                 UnboundType="Decimal" Width="70"  >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:TextEdit Name="PART_Editor" DisplayFormatString="#,#.00" />
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+
+
+                                <!--<dxg:GridColumn FieldName="AmountConsumptionWarehouseBrak" Header="Количество (брак), шт" Width="70" />
+                                <dxg:GridColumn FieldName="LenghtConsumptionWarehouseBrak" Header="Общая длина (брак), м" Width="60"  />
+                                <dxg:GridColumn FieldName="WeightConsumptionWarehouseBrak" Header="Общий вес (брак), кг"  Width="60" />-->
+                            </dxg:GridControlBand>
+                        </dxg:GridControl.Bands>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableViewSummaryTableProfile" ShowTotalSummary="True" FontSize="11" AllowEditing="False" 
+                                           NewItemRowPosition="Bottom" FontFamily="Times New Roman" 
+                                           ScrollViewer.HorizontalScrollBarVisibility="Visible" >
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </Border>
+        </TabItem>
+        <TabItem Header="Сводная при распиле двух разных длин" >
+            <Border >
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,0" EndPoint="1,2.9">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="1"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    <TextBox  x:Name="txtProfileCutting" Text="{Binding NomenclatureProfile, UpdateSourceTrigger=PropertyChanged}"  Grid.Row="0" Grid.Column="2" Visibility="Hidden" />
+                    <dxg:GridControl  Grid.Row="1"  x:Name="gridControlSummaryTableProfileCutting"  Grid.Column="0"   EnableSmartColumnsGeneration="True" ItemsSource="{Binding SummaryTableProfileCutting}" SelectionMode="Cell" KeyDown="TreeList_KeyDown" Margin="5" ClipboardCopyMode="ExcludeHeader" Grid.ColumnSpan="2">
+                        <dxg:GridControl.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Header="Открыть информацию о профиле" Command="{Binding ShowCardProfileCommand}" />
+                                <MenuItem Header="Обновить данные" Command="{Binding  ShowRefreshGeneralCommand}"/>
+                                <MenuItem Header="ExcelGridCutting" Click="ExcelGrid"/>
+                            </ContextMenu>
+                        </dxg:GridControl.ContextMenu>
+                        <dxg:GridControl.Bands>
+                            <dxg:GridControlBand Header="Band1" OverlayHeaderByChildren="True" Fixed="Left">
+                                <dxg:GridColumn FieldName="NumberSpecification" Header="Номер заказа" Width="50"  />
+                                <dxg:GridColumn FieldName="GeneralNomenclatureProfile" Header="Общий номер профиля" Width="120" />
+                                <dxg:GridColumn FieldName="NomenclatureProfile" Header="Номер профиля" Width="120" />
+                                <dxg:GridColumn FieldName="EloksalNoCommercial" Header="Номер профиля клиента" Width="60" />
+                                <dxg:GridColumn FieldName="ClientName" Header="Наи-ние заказчика" Width="80"  />
+                                <dxg:GridColumn FieldName="WeightMeter" Header="Вес п.м, кг/м" Width="40" />
+                                <dxg:GridColumn FieldName="LenghtProfile" Header="Длина профиля, мм" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPieceFact" Header="Кол-во хл. Сырья, шт" Width="40" />
+                                <dxg:GridColumn FieldName="LenghtProfileFact" Header="Длина хлыста, мм" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPiece" Header="Кол-во Гот-го профиля, шт" Width="40" />
+                                <dxg:GridColumn FieldName="AmountPackingAluminumProfile" Header="Кол-во Упаков. профиля, шт" Width="50" CellStyle="{StaticResource GreenLightColumnStyle}"/>
+                                <dxg:GridColumn FieldName="Column1" Header="Остаток на складе, шт" UnboundExpression="ToInt([AmountPackingAluminumProfile])-ToInt([AmountProfileConsumptionWarehouse])"
+                                                 UnboundType="Integer" Width="50" CellStyle="{StaticResource GreenLightColumnStyle}" />
+                                <dxg:GridColumn FieldName="Column3" Header="Общее кол-во брака, шт" Width="40" UnboundType="Integer" UnboundExpression="ToInt([AmountPieceShotBlastingProfileBrak]) + ToInt([AmountPieceAnodizingProcessProfileBrak]) + ToInt([AmountPiecePackingAluminumProfileBrak])
+                                                + ToInt([AmountPieceTapeProtectiveProcessProfileBrak]) + ToInt([AmountPieceСuttingFacingProfileBrak])" CellStyle="{StaticResource GreenLightColumnStyle}"/>
+                                <dxg:GridColumn FieldName="Annotation" Header="Примечание" Width="50"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Склад сырья" HorizontalHeaderContentAlignment="Center"  >
+                                <dxg:GridColumn FieldName="DateReception" Header="Дата приема сырья" Width="55" CellStyle="{StaticResource BrownColumnStyle}"  />
+                                <!--<dxg:GridColumn FieldName="DateShipment" Header="Дата отгрузки сырья" Width="70" CellStyle="{StaticResource BrownColumnStyle}"  />-->
+                                <dxg:GridColumn FieldName="AmountPieceReceptionAccepted" Header="Кол-во хлыстов Сырья, шт" Width="50" CellStyle="{StaticResource BrownColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtReceptionAccepted" Header="Общая длина, м" Width="50" CellStyle="{StaticResource BrownColumnStyle}"   />
+                                <dxg:GridColumn FieldName="WeightReceptionAccepted" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource BrownColumnStyle}"  />
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Дробейструйная обработка профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceShotBlastingProfile" Header="Кол-во хлыстов, шт" Width="50" CellStyle="{StaticResource GreyColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtShotBlastingProfile" Header="Общая длина, м" Width="50" CellStyle="{StaticResource GreyColumnStyle }"  />
+                                <dxg:GridColumn FieldName="WeightShotBlastingProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource GreyColumnStyle }"  />
+                                <dxg:GridColumn FieldName="AmountPieceShotBlastingProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtShotBlastingProfileBrak" Header="Общая длина (брак), м"  Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightShotBlastingProfileBrak" Header="Общий вес (брак), кг"  Width="50" CellStyle="{StaticResource GreyColumnStyle }" />
+                            </dxg:GridControlBand>
+                            <!--<dxg:GridControlBand Header="Навеска алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceHitchAluminumProfile" Header="Количество хлыстов , шт" Width="70"  CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtHitchAluminumProfile" Header="Общая длина, м" Width="60" CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightHitchAluminumProfile" Header="Общий вес, кг" Width="60" CellStyle="{StaticResource BlueColumnStyle }" />
+                                <dxg:GridColumn FieldName="AmountPieceHitchAluminumProfileBrak" Header="Количество хлыстов (брак), шт"  Width="70" CellStyle="{StaticResource BlueColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtHitchAluminumProfileBrak" Header="Общая длина (брак), м" Width="60"  CellStyle="{StaticResource BlueColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightHitchAluminumProfileBrak" Header="Общий вес(брак), кг"  Width="60" CellStyle="{StaticResource BlueColumnStyle }"/>
+                            </dxg:GridControlBand>-->
+                            <dxg:GridControlBand Header="Анодирование алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPieceAnodizingProcessProfile" Header="Кол-во хлыстов, шт" Width="50"  CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtAnodizingProcessProfile" Header="Общая длина, м" Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightAnodizingProcessProfile" Header="Общий вес, кг"  Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                                <dxg:GridColumn FieldName="AmountPieceAnodizingProcessProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtAnodizingProcessProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource GreenColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightAnodizingProcessProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource GreenColumnStyle }"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Резка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountСuttingFacingProfile" Header="Кол-во хлыстов торцовка, шт" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtСuttingFacingProfile" Header="Общая длина, м" Width="40" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightСuttingFacingProfile" Header="Общий вес, кг"  Width="50" CellStyle="{StaticResource FioletColumnStyle }" />
+                                <dxg:GridColumn FieldName="AmountPieceСuttingFacingProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtСuttingFacingProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightСuttingFacingProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource FioletColumnStyle }"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Нанесение защитной пленки" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountTapeProtectiveProcessProfile" Header="Кол-во хлыстов, шт" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtTapeProtectiveProcessProfile" Header="Общая длина м" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightTapeProtectiveProcessProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="AmountPieceTapeProtectiveProcessProfileBrak" Header="Кол-во хлыстов (брак), шт" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                                <dxg:GridColumn FieldName="LenghtTapeProtectiveProcessProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource RedColumnStyle }" />
+                                <dxg:GridColumn FieldName="WeightTapeProtectiveProcessProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource RedColumnStyle }"/>
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Упаковка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountPackingAluminumProfile" Header="Кол-во профиля, шт" Width="50" CellStyle="{StaticResource OrangeColumnStyle }" />
+                                <dxg:GridColumn FieldName="LenghtPackingAluminumProfile" Header="Общая длина, м"  Width="40" CellStyle="{StaticResource OrangeColumnStyle }"/>
+                                <dxg:GridColumn FieldName="WeightPackingAluminumProfile" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="AmountPiecePackingAluminumProfileBrak" Header="Кол-во профиля (брак), шт" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="LenghtPackingAluminumProfileBrak" Header="Общая длина (брак), м" Width="50" CellStyle="{StaticResource OrangeColumnStyle}"/>
+                                <dxg:GridColumn FieldName="WeightPackingAluminumProfileBrak" Header="Общий вес (брак), кг" Width="50" CellStyle="{StaticResource OrangeColumnStyle}" />
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Отгрузка алюминиевого профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="AmountProfileConsumptionWarehouse" Header="Кол-во профиля, шт" Width="50" CellStyle="{StaticResource BlueColumnStyle}"  />
+                                <dxg:GridColumn FieldName="LenghtProfileConsumptionWarehouse" Header="Общая длина, м" Width="50" CellStyle="{StaticResource BlueColumnStyle}" />
+                                <dxg:GridColumn FieldName="WeightProfileConsumptionWarehouse" Header="Общий вес, кг" Width="50" CellStyle="{StaticResource BlueColumnStyle}"   />
+                                <!--<dxg:GridColumn FieldName="AmountConsumptionWarehouseBrak" Header="Количество (брак), шт" Width="70" />
+                                <dxg:GridColumn FieldName="LenghtConsumptionWarehouseBrak" Header="Общая длина (брак), м" Width="60"  />
+                                <dxg:GridColumn FieldName="WeightConsumptionWarehouseBrak" Header="Общий вес (брак), кг"  Width="60" />-->
+                            </dxg:GridControlBand>
+                            <dxg:GridControlBand Header="Остаток профиля" HorizontalHeaderContentAlignment="Center" >
+                                <dxg:GridColumn FieldName="Column1" Header="Остаток на складе, шт" UnboundExpression="ToInt([AmountPackingAluminumProfile])-ToInt([AmountProfileConsumptionWarehouse])"
+                                                 UnboundType="Integer" Width="60" />
+                                <dxg:GridColumn FieldName="Column2" Header="Остаток на складе, кг" UnboundExpression="ToInt([Column1])*ToInt([LenghtProfile])*ToDouble([WeightMeter])/1000"
+                                                 UnboundType="Decimal" Width="70"  >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:TextEdit Name="PART_Editor" DisplayFormatString="#,#.00" />
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+
+
+                                <!--<dxg:GridColumn FieldName="AmountConsumptionWarehouseBrak" Header="Количество (брак), шт" Width="70" />
+                                <dxg:GridColumn FieldName="LenghtConsumptionWarehouseBrak" Header="Общая длина (брак), м" Width="60"  />
+                                <dxg:GridColumn FieldName="WeightConsumptionWarehouseBrak" Header="Общий вес (брак), кг"  Width="60" />-->
+                            </dxg:GridControlBand>
+                        </dxg:GridControl.Bands>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="tableViewSummaryTableProfileCutting" ShowTotalSummary="True" FontSize="11" AllowEditing="False" 
+                                           NewItemRowPosition="Bottom" FontFamily="Times New Roman" 
+                                           ScrollViewer.HorizontalScrollBarVisibility="Visible" >
+                                <dxg:TableView.ColumnHeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" TextWrapping="Wrap"/>
+                                    </DataTemplate>
+                                </dxg:TableView.ColumnHeaderTemplate>
+                                <dxg:TableView.RowStyle>
+                                    <Style>
+                                        <Setter Property="TextElement.Foreground" Value="Black"/>
+                                    </Style>
+                                </dxg:TableView.RowStyle>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </Border>
+        </TabItem>
+    </TabControl>
+</UserControl>

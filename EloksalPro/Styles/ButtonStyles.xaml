@@ -1,0 +1,370 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+                    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid">
+
+    <!--Menu button-->
+    <Style x:Key="menuButton" TargetType="RadioButton">
+        <!--Normal button style-->
+        <Setter Property="Height" Value="45"/>
+        <Setter Property="Margin" Value="-5,0,0,5"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="4,0,0,0"
+                            BorderBrush="{TemplateBinding BorderBrush}">
+                        <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="{StaticResource panelOverColor}"/>
+                <Setter Property="Foreground" Value="{StaticResource titleColor3}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+            <!--Activated button style-->
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Margin" Value="0,0,0,5"/>
+                <Setter Property="Background" Value="{StaticResource panelActiveColor}"/>
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+                <Setter Property="BorderBrush" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <!--Menu button icon-->
+    <Style x:Key="menuButtonIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="Width" Value="22"/>
+        <Setter Property="Height" Value="22"/>
+        <Setter Property="Margin" Value="35,0,20,0"/>
+    </Style>
+
+    <!--Menu button text-->
+    <Style x:Key="menuButtonText" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <!--Control bar button-->
+    <Style x:Key="controlButton" TargetType="Button">
+        <!--Normal button style-->
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor3}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
+                            CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Right"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource panelActiveColor}"/>
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Control bar button-->
+    <Style x:Key="controlButton2" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="{StaticResource titleColor6}"/>
+        <Setter Property="Background" Value="{StaticResource color13}"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="0,0,5,10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="180" Height="40"
+                                        CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFB728ED"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="controlButton3" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="{StaticResource titleColor6}"/>
+        <Setter Property="Background" Value="{StaticResource color5}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="200" Height="50"
+                                        CornerRadius="15"
+                                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FFB728ED"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="controlText" TargetType="TextBox">
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Medium"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="1"/>
+        <Setter Property="BorderBrush" Value="{StaticResource titleColor1}"/>
+    </Style>
+
+    <Style x:Key="controlText1" TargetType="TextBox">
+        <Setter Property="Foreground" Value="{StaticResource titleColor6}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Times New Roman"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="BorderBrush" Value="{StaticResource titleColor6}"/>
+        <Setter Property="Margin" Value="1"/>
+    </Style>
+
+    <Style x:Key="controlTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Margin" Value="5,0,0,0"/>
+    </Style>
+
+
+    <!--Menu button icon-->
+    <Style x:Key="controlButtonIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="9"/>
+        <Setter Property="Height" Value="9"/>
+    </Style>
+    <!--Icon button-->
+    <Style x:Key="iconButton" TargetType="Button">
+        <!--Normal button style-->
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self}}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--Menu button icon-->
+    <Style x:Key="iconButtonIcon" TargetType="fa:IconImage">
+        <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+    </Style>
+    <Style x:Key="controlButtonGray" TargetType="Button">
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="280" Height="40"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="#FF3C3B42"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1B4968"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="controlButtonLightGray" TargetType="Button">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="280" Height="40"
+                                        CornerRadius="10"
+                                        Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background" Value="LightGray"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#FF1B4968"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style  TargetType="{x:Type TabItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border x:Name="Border"
+                                Margin="0,0,0,0"
+                                BorderBrush="Gainsboro"
+                                BorderThickness="1,1,1,0"
+                                CornerRadius="5,5,0,0"
+                                Padding="25,5,25,5">
+                        <ContentPresenter x:Name="ContentSite" ContentSource="Header" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White" />
+                            <Setter TargetName="Border" Property="Background" Value="#FF3C3B42"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White" />
+                            <Setter TargetName="Border" Property="Background" Value="#FF1B4968" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="{x:Type TabControl}">
+        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="Padding" Value="0.5" />
+        <Setter Property="Background" Value="{StaticResource color15}" />
+    </Style>
+
+    <Style TargetType="dxg:RowControl">
+        <Style.Triggers>
+            <Trigger Property="SelectionState" Value="Selected">
+                <Setter Property="Background" Value="#FF1B4968"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+            <Trigger Property="SelectionState" Value="Focused">
+                <Setter Property="Background" Value="#FF1B4968"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <Style TargetType="{x:Type ListBoxItem}">
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="DarkGray"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="400"/>
+        <Setter Property="Height" Value="20"/>
+        <!--and so on whatever you want...-->
+    </Style>
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="FontFamily" Value="Montserrat"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="BlueColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="LightBlue"/>
+    </Style>
+    <Style x:Key="GreenColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="LightGreen"/>
+    </Style>
+    <Style x:Key="RedColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FFE69198"/>
+    </Style>
+    <Style x:Key="FioletColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FFB888DA"/>
+    </Style>
+    <Style x:Key="OrangeColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FFF3A86A"/>
+    </Style>
+    <Style x:Key="GreyColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FF9E981B"/>
+    </Style>
+    <Style x:Key="BrownColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FFBD9393"/>
+    </Style>
+    <Style x:Key="GreenLightColumnStyle" TargetType="dxg:LightweightCellEditor">
+        <Setter Property="Background" Value="#FF76B04E"/>
+    </Style>
+    <Style x:Key="FocusedRowStyle" TargetType="dxg:RowControl">
+        <Style.Triggers>
+            <Trigger Property="dxg:DataViewBase.IsFocusedRow" Value="True">
+                <Setter Property="Background" Value="Red"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--<Style x:Key="FocusedCellStyle" TargetType="dxg:LightweightCellEditor">
+        <Style.Triggers>
+            <Trigger Property="dxg:DataViewBase.IsFocusedCell" Value="True">
+                <Setter Property="Background" Value="Green" />
+                <Setter Property="Foreground" Value="Yellow" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+    <!--<Style x:Key="FocusedRowStyle" TargetType="dxg:RowControl">
+        <Style.Triggers>
+            <Trigger Property="dxg:DataViewBase.IsFocusedRow" Value="True">
+                <Setter Property="Background" Value="RosyBrown" />
+                <Setter Property="Foreground" Value="White" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>-->
+    <!--<Style TargetType="{x:Type TabControl}">
+        <Setter Property="BorderThickness" Value="0.5" />
+        <Setter Property="Padding" Value="0.5" />
+        <Setter Property="Background" Value="{StaticResource primaryBackColor2}" />
+    </Style>-->
+</ResourceDictionary>
+
